@@ -1,6 +1,7 @@
 name: Codespell
 
 on:
+  push:
   workflow_call:
     inputs:
       path:
