@@ -35,15 +35,15 @@ jobs:
       - name: Download resumes
         uses: actions/download-artifact@v3
         with:
-          name: ${{ github.event.inputs.artifact-name }}
-          path: ${{ github.event.inputs.artifact-path }}
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-path }}
 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.inputs.release-tag }}
-          RELEASE_TITLE: ${{ github.event.inputs.release-title }}
-          RELEASE_ASSET: ${{ github.event.inputs.release-asset }}
+          RELEASE_TAG: ${{ inputs.release-tag }}
+          RELEASE_TITLE: ${{ inputs.release-title }}
+          RELEASE_ASSET: ${{ inputs.release-asset }}
         run: |
           gh release delete $RELEASE_TAG -y || true
           gh release create $RELEASE_TAG -t $RELEASE_TITLE || true

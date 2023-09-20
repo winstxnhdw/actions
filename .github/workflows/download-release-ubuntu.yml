@@ -1,0 +1,25 @@
+name: Download release
+
+on:
+  workflow_call:
+    inputs:
+      release-tag:
+        description: 'Release tag'
+        type: string
+        required: true
+      release-name:
+        description: 'Release name'
+        type: string
+        required: true
+
+env:
+  RELEASE_TAG: ${{ inputs.release-tag }}
+  RELEASE_NAME: ${{ inputs.release-name }}
+
+jobs:
+  download-release-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Binary
+        run: curl -sLO https://github.com/$GITHUB_REPOSITORY/releases/download/$RELEASE_TAG/$RELEASE_NAME

@@ -38,13 +38,13 @@ jobs:
         run: bun lint
 
       - name: Test
-        if: !github.event.inputs.disable-test
+        if: !inputs.disable-test
         run: bun test
 
       - name: Build
-        if: !github.event.inputs.disable-build
+        if: !inputs.disable-build
         run: |
           read -a BUILD_ARGS <<< $BUILD_ARGS
           bun run build ${BUILD_ARGS[@]}
         env:
-          BUILD_ARGS: ${{ github.event.inputs.build-args }}
+          BUILD_ARGS: ${{ inputs.build-args }}

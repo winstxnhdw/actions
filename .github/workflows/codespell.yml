@@ -26,5 +26,5 @@ jobs:
       - name: Use Codespell
         uses: codespell-project/actions-codespell@v2
         with:
-          path: ${{ github.event.inputs.codespell-path }}
-          skip: ${{ github.event.inputs.codespell-skip }}
+          path: ${{ inputs.codespell-path }}
+          skip: ${{ inputs.codespell-skip }}
