@@ -15,7 +15,7 @@ on:
         description: 'Release asset'
         type: string
         required: true
-      aritifact-name:
+      artifact-name:
         description: 'Artifact name'
         type: string
         required: true
