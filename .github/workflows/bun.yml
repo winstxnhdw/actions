@@ -7,17 +7,14 @@ on:
         description: 'Disable tests if true'
         type: boolean
         required: false
-        default: false
       disable-build:
         description: 'Disable build if true'
         type: boolean
         required: false
-        default: false
       build-args:
         description: 'Build arguments'
         type: string
         required: false
-        default: ''
 
 jobs:
   bun:

@@ -7,7 +7,6 @@ on:
         description: 'Disable tests if true'
         type: boolean
         required: false
-        default: false
 
 jobs:
   python:
