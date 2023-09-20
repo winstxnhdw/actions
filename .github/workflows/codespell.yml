@@ -1,0 +1,27 @@
+name: Codespell
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: 'Path to check'
+        type: string
+        required: true
+      skip:
+        description: 'Files to skip'
+        type: string
+        required: false
+
+jobs:
+  codespell:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Codespell
+        uses: codespell-project/actions-codespell@v2
+        with:
+          path: ${{ github.event.inputs.path }}
+          skip: ${{ github.event.inputs.skip }}
