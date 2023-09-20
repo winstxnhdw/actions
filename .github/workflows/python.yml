@@ -37,5 +37,5 @@ jobs:
         run: poetry run pyright
 
       - name: Test
-        if: !inputs.disable-test
+        if: ! inputs.disable-test
         run: poetry run pytest
