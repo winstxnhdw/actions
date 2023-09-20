@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1

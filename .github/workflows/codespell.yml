@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: Use Codespell
         uses: codespell-project/actions-codespell@v2
