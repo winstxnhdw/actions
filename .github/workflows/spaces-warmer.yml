@@ -1,0 +1,19 @@
+name: Warm
+
+on: workflow_call
+
+env:
+  REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+jobs:
+  warm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: cURL Swagger
+        run: |
+          [ ! "$(curl https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space/api/docs)" = "{\"detail\":\"Not Found\"}" ]
+
+      - name: cURL the API
+        run: |
+          [ "$(curl https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space/api/v1/)" = "Welcome to v1 of the API!" ]

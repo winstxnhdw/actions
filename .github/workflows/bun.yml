@@ -1,0 +1,51 @@
+name: Bun
+
+on:
+  workflow_call:
+    inputs:
+      disable-test:
+        description: 'Disable tests if true'
+        type: boolean
+        required: false
+        default: false
+      disable-build:
+        description: 'Disable build if true'
+        type: boolean
+        required: false
+        default: false
+      build-args:
+        description: 'Build arguments'
+        type: string
+        required: false
+        default: ''
+
+jobs:
+  bun:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install node dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun lint
+
+      - name: Test
+        if: !github.event.inputs.disable-test
+        run: bun test
+
+      - name: Build
+        if: !github.event.inputs.disable-build
+        run: |
+          read -a BUILD_ARGS <<< $BUILD_ARGS
+          bun run build ${BUILD_ARGS[@]}
+        env:
+          BUILD_ARGS: ${{ github.event.inputs.build-args }}

@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  workflow_call:
+    inputs:
+      release-tag:
+        description: 'Release tag'
+        type: string
+        required: true
+      release-title:
+        description: 'Release title'
+        type: string
+        required: true
+      release-asset:
+        description: 'Release asset'
+        type: string
+        required: true
+      aritifact-name:
+        description: 'Artifact name'
+        type: string
+        required: true
+      artifact-path:
+        description: 'Artifact path'
+        type: string
+        required: true
+
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download resumes
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ github.event.inputs.artifact-name }}
+          path: ${{ github.event.inputs.artifact-path }}
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.inputs.release-tag }}
+          RELEASE_TITLE: ${{ github.event.inputs.release-title }}
+          RELEASE_ASSET: ${{ github.event.inputs.release-asset }}
+        run: |
+          gh release delete $RELEASE_TAG -y || true
+          gh release create $RELEASE_TAG -t $RELEASE_TITLE || true
+          gh release upload $RELEASE_TAG $RELEASE_ASSET --clobber

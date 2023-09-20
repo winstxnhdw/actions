@@ -1,0 +1,16 @@
+name: Build
+
+on: workflow_call
+
+env:
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Factory restart API
+        run: |
+          curl -X POST https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart?factory=true \
+               -H "Authorization: Bearer $HF_TOKEN"

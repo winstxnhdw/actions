@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "18:00"
+      timezone: "Asia/Singapore"
+    groups:
+       dependencies:
+          patterns: ["*"]
