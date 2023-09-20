@@ -4,11 +4,11 @@ on:
   push:
   workflow_call:
     inputs:
-      path:
+      codespell-path:
         description: 'Path to check'
         type: string
         required: true
-      skip:
+      codespell-skip:
         description: 'Files to skip'
         type: string
         required: false
@@ -26,5 +26,5 @@ jobs:
       - name: Use Codespell
         uses: codespell-project/actions-codespell@v2
         with:
-          path: ${{ github.event.inputs.path }}
-          skip: ${{ github.event.inputs.skip }}
+          path: ${{ github.event.inputs.codespell-path }}
+          skip: ${{ github.event.inputs.codespell-skip }}
