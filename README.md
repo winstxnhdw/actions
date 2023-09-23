@@ -4,6 +4,18 @@ This repository contains a collection of my reusable GitHub workflows. Most cust
 
 ## Workflows
 
+- [bun.yml](#bunyml)
+- [codespell.yml](#codespellyml)
+- [dependabot-private.yml](#dependabot-privateyml)
+- [dependabot-public.yml](#dependabot-publicyml)
+- [docker-push.yml](#docker-pushyml)
+- [format-python.yml](#format-pythonyml)
+- [python.yml](#pythonyml)
+- [release.yml](#releaseyml)
+- [spaces-deploy.yml](#spaces-deployyml)
+- [spaces-restart.yml](#spaces-restartyml)
+- [spaces-warmer.yml](#spaces-warmeryml)
+
 ### bun.yml
 
 Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/bun.yml) for lint/test/build.
