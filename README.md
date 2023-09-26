@@ -119,6 +119,9 @@ jobs:
 Reusable [workflow](.github/workflows/keep-alive.yml) for keeping your GitHub workflows alive. GitHub suspends workflows after 60 days of inactivity. Learn more [here](https://docs.github.com/en/actions/using-workflows/disabling-and-enabling-a-workflow).
 
 ```yml
+permissions:
+  contents: write
+
 jobs:
   keep-alive:
     uses: winstxnhdw/actions/.github/workflows/keep-alive.yml@main
