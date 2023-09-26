@@ -120,6 +120,21 @@ jobs:
 Reusable [workflow](.github/workflows/keep-alive.yml) for keeping your GitHub workflows alive. GitHub suspends workflows after 60 days of inactivity. Learn more [here](https://docs.github.com/en/actions/using-workflows/disabling-and-enabling-a-workflow).
 
 ```yml
+name: Keep Alive
+
+on:
+  schedule:
+    #       ┌──────────────── minute (0 - 59)
+    #       │ ┌────────────── hour (0 - 23)
+    #       │ │ ┌──────────── day of the month (1 - 31)
+    #       │ │ │ ┌────────── month (1 - 12 or JAN-DEC)
+    #       │ │ │ │ ┌──────── day of the week (0 - 6 or SUN-SAT)
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    #       * * * * *
+    - cron: 0 0 1 * *
+
 permissions:
   contents: write
 
@@ -192,7 +207,22 @@ jobs:
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-warmer.yml) for warming a Hugging Face Space of the same repository name.
 
 ```yml
+name: Warm
+
+on:
+  schedule:
+    #       ┌──────────────── minute (0 - 59)
+    #       │ ┌────────────── hour (0 - 23)
+    #       │ │ ┌──────────── day of the month (1 - 31)
+    #       │ │ │   ┌──────── month (1 - 12 or JAN-DEC)
+    #       │ │ │   │ ┌────── day of the week (0 - 6 or SUN-SAT)
+    #       │ │ │   │ │
+    #       │ │ │   │ │
+    #       │ │ │   │ │
+    #       * * *   * *
+    - cron: 0 0 */2 * *
+
 jobs:
-  restart:
+  warm:
     uses: winstxnhdw/actions/.github/workflows/spaces-warmer.yml@main
 ```
