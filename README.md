@@ -69,6 +69,10 @@ jobs:
 Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-private.yml) for auto-merging Dependabot pull requests in private repositories.
 
 ```yml
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   auto-merge:
     uses: winstxnhdw/actions/.github/workflows/dependabot-private.yml@main
@@ -79,6 +83,9 @@ jobs:
 Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-public.yml) for auto-merging Dependabot pull requests in public repositories.
 
 ```yml
+permissions:
+  contents: write
+
 jobs:
   auto-merge:
     uses: winstxnhdw/actions/.github/workflows/dependabot-public.yml@main
@@ -89,6 +96,9 @@ jobs:
 Reusable [Docker](https://github.com/docker/build-push-action) [workflow](.github/workflows/docker-push.yml) for pushing Docker images into the GitHub Container registry.
 
 ```yml
+permissions:
+  packages: write
+
 jobs:
   build:
     uses: winstxnhdw/actions/.github/workflows/docker-push.yml@main
@@ -102,6 +112,16 @@ Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflow
 jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
+```
+
+### keep-alive.yml
+
+Reusable [workflow](.github/workflows/keep-alive.yml) for keeping your GitHub workflows alive. GitHub suspends workflows after 60 days of inactivity. Learn more [here](https://docs.github.com/en/actions/using-workflows/disabling-and-enabling-a-workflow).
+
+```yml
+jobs:
+  keep-alive:
+    uses: winstxnhdw/actions/.github/workflows/keep-alive.yml@main
 ```
 
 ### python.yml
@@ -129,6 +149,9 @@ jobs:
 Reusable [workflow](.github/workflows/release.yml) for naively uploading a releases to GitHub from a workflow artifact.
 
 ```yml
+permissions:
+  contents: write
+
 jobs:
   release:
     uses: winstxnhdw/actions/.github/workflows/release.yml@main
