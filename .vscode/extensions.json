@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "github.vscode-github-actions",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "esbenp.prettier-vscode"
   ]
 }
