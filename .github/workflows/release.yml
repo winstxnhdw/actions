@@ -41,10 +41,11 @@ jobs:
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ inputs.release-tag }}
           RELEASE_TITLE: ${{ inputs.release-title }}
           RELEASE_ASSET: ${{ inputs.release-asset }}
         run: |
-          gh release -R $GITHUB_REPOSITORY delete $RELEASE_TAG -y || true
-          gh release -R $GITHUB_REPOSITORY create $RELEASE_TAG -t $RELEASE_TITLE || true
-          gh release -R $GITHUB_REPOSITORY upload $RELEASE_TAG $RELEASE_ASSET --clobber
+          gh release delete $RELEASE_TAG -y || true
+          gh release create $RELEASE_TAG -t $RELEASE_TITLE || true
+          gh release upload $RELEASE_TAG $RELEASE_ASSET --clobber

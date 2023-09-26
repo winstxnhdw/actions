@@ -1,6 +1,16 @@
 name: Build
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      file:
+        description: 'Path to Dockerfile'
+        type: string
+        required: true
+    secrets:
+      token:
+        description: 'A GitHub token secret'
+        required: true
 
 permissions:
   packages: write
@@ -23,7 +33,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.token }}
 
       - name: Extract metadata for Docker
         uses: docker/metadata-action@v5.0.0
@@ -34,7 +44,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          file: Dockerfile.build
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          file: ${{ inputs.file }}
+          push: true

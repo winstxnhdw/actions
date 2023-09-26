@@ -1,6 +1,11 @@
 name: Deploy
 
-on: workflow_call
+on:
+  workflow_call:
+    secrets:
+      token:
+        description: 'A Hugging Face API token'
+        required: true
 
 jobs:
   deploy:
@@ -19,7 +24,7 @@ jobs:
 
       - name: Push to Hugging Face Spaces
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_TOKEN: ${{ secrets.token }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
         run: |
           COMMIT_MESSAGE=$(git show -s --format=%s)

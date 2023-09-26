@@ -77,6 +77,8 @@ permissions:
 jobs:
   auto-merge:
     uses: winstxnhdw/actions/.github/workflows/dependabot-private.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### dependabot-public.yml
@@ -90,6 +92,8 @@ permissions:
 jobs:
   auto-merge:
     uses: winstxnhdw/actions/.github/workflows/dependabot-public.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### docker-push.yml
@@ -103,6 +107,10 @@ permissions:
 jobs:
   build:
     uses: winstxnhdw/actions/.github/workflows/docker-push.yml@main
+    with:
+      file: Dockerfile.build
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### format-python.yml
@@ -190,6 +198,8 @@ Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) 
 jobs:
   deploy:
     uses: winstxnhdw/actions/.github/workflows/spaces-deploy.yml@main
+    secrets:
+      token: ${{ secrets.HF_TOKEN }}
 ```
 
 ### spaces-restart.yml
@@ -200,6 +210,8 @@ Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) 
 jobs:
   restart:
     uses: winstxnhdw/actions/.github/workflows/spaces-restart.yml@main
+    secrets:
+      token: ${{ secrets.HF_TOKEN }}
 ```
 
 ### spaces-warmer.yml

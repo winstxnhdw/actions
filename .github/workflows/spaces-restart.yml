@@ -1,9 +1,14 @@
 name: Build
 
-on: workflow_call
+on:
+  workflow_call:
+    secrets:
+      token:
+        description: 'A Hugging Face API token'
+        required: true
 
 env:
-  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF_TOKEN: ${{ secrets.token }}
 
 jobs:
   restart:

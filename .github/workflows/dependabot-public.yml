@@ -1,13 +1,19 @@
 name: Dependabot
 
-on: [pull_request, workflow_call]
+on:
+  pull_request:
+  workflow_call:
+    secrets:
+      token:
+        description: 'A GitHub token secret'
+        required: true
 
 permissions:
   contents: write
 
 env:
   PR_URL: ${{ github.event.pull_request.html_url }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.token }}
 
 jobs:
   auto-merge:
