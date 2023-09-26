@@ -118,6 +118,9 @@ jobs:
 Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/format-python.yml) for fixing Python formatting with [isort](https://github.com/PyCQA/isort).
 
 ```yml
+permissions:
+  contents: write
+
 jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
