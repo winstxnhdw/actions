@@ -17,16 +17,13 @@ jobs:
 
       - name: Set Git config
         run: |
-          git config --global user.email github-actions[bot]@users.noreply.github.com
-          git config --global user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git config user.name github-actions[bot]
 
-      - name: Push dummy commit
+      - name: Push and revert dummy commit
         run: |
           [ $(( $(date +%s) - $(git show -s --format=%ct) )) -lt 2629746  ] && exit 0
           git commit --allow-empty -m "chore: keep alive commit"
           git push
-
-      - name: Remove dummy commit
-        run: |
           git reset HEAD^
           git push --force-with-lease
