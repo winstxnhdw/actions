@@ -33,5 +33,5 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit -m "style: format scripts" || true
-          git push || true
+          git commit -m "style: format scripts" || exit 0
+          git push
