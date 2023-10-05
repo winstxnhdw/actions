@@ -31,7 +31,7 @@ jobs:
         run: poetry install
 
       - name: Run linter
-        run: poetry run pylint $(git ls-files '*.py')
+        run: poetry run pylint --recursive=y .
 
       - name: Run type checker
         run: poetry run pyright
