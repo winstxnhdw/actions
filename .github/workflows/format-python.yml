@@ -20,10 +20,10 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Sort imports
-        uses: isort/isort-action@master
+      - name: Fix lints
+        uses: chartboost/ruff-action@v1
         with:
-          configuration: --atomic
+          args: --select I --fix
 
       - name: Set Git config
         run: |
