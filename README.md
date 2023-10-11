@@ -12,6 +12,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [dependabot-private.yml](#dependabot-privateyml)
 - [dependabot-public.yml](#dependabot-publicyml)
 - [docker-push.yml](#docker-pushyml)
+- [format-bun.yml](#format-bunyml)
 - [format-python.yml](#format-pythonyml)
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
@@ -113,9 +114,22 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+### format-bun.yml
+
+Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/format-bun.yml) for fixing Bun formatting and lints with [Prettier](https://github.com/prettier/prettier) and [ESLint](https://github.com/eslint/eslint).
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  format:
+    uses: winstxnhdw/actions/.github/workflows/format-bun.yml@main
+```
+
 ### format-python.yml
 
-Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/format-python.yml) for fixing Python formatting with [isort](https://github.com/PyCQA/isort).
+Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/format-python.yml) for fixing Python formatting with [ruff](https://github.com/astral-sh/ruff).
 
 ```yml
 permissions:

@@ -15,15 +15,19 @@ jobs:
         with:
           show-progress: false
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          python-version: 3.11
+          bun-version: latest
+
+      - name: Install node dependencies
+        run: bun install --frozen-lockfile
 
       - name: Fix lints
-        uses: chartboost/ruff-action@v1
-        with:
-          args: --select I --fix
+        run: bun lint --fix
+
+      - name: Format with Prettier
+        run: bun prettier --write **.ts
 
       - name: Set Git config
         run: |
