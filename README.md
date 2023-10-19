@@ -32,7 +32,7 @@ jobs:
     with:
       disable-test: false
       disable-build: false
-      build-args: false
+      build-args: --test
 ```
 
 Minimally, you can use it in the following manner.
