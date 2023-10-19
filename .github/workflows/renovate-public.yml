@@ -1,0 +1,25 @@
+name: Renovate
+
+on:
+  pull_request:
+  workflow_call:
+    secrets:
+      token:
+        description: 'A GitHub token secret'
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  PR_URL: ${{ github.event.pull_request.html_url }}
+  GITHUB_TOKEN: ${{ secrets.token }}
+
+jobs:
+  auto-merge:
+    if: ${{ github.event.pull_request.user.login == 'renovate[bot]' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Auto-merge Dependabot PRs
+        run: gh pr merge --rebase $PR_URL
