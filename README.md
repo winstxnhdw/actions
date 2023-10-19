@@ -207,6 +207,21 @@ jobs:
       artifact-path: dist/
 ```
 
+### renovate-public.yml
+
+Reusable [Renovate](https://github.com/renovatebot/renovate) [workflow](.github/workflows/renovate-public.yml) for auto-merging Renovate pull requests in public repositories.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  auto-merge:
+    uses: winstxnhdw/actions/.github/workflows/renovate-public.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+```
+
 ### spaces-deploy.yml
 
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-deploy.yml) for deploying a `Dockerfile` to a Hugging Face Space of the same repository name.
