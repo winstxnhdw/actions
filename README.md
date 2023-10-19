@@ -17,6 +17,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
 - [release.yml](#releaseyml)
+- [renovate-public.yml](#renovate-publicyml)
 - [spaces-deploy.yml](#spaces-deployyml)
 - [spaces-restart.yml](#spaces-restartyml)
 - [spaces-warmer.yml](#spaces-warmeryml)
