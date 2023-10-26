@@ -15,11 +15,6 @@ jobs:
         with:
           show-progress: false
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
       - name: Fix lints
         uses: chartboost/ruff-action@v1
         with:
