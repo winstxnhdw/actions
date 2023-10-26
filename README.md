@@ -178,6 +178,7 @@ jobs:
   python:
     uses: winstxnhdw/actions/.github/workflows/python.yml@main
     with:
+      python-version: '*'
       disable-test: false
 ```
 
