@@ -47,5 +47,5 @@ jobs:
           RELEASE_ASSET: ${{ inputs.release-asset }}
         run: |
           gh release delete $RELEASE_TAG -y || true
-          gh release create $RELEASE_TAG -t $RELEASE_TITLE || true
+          gh release create $RELEASE_TAG -t "$RELEASE_TITLE" || true
           gh release upload $RELEASE_TAG $RELEASE_ASSET --clobber
