@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download resumes
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.artifact-name }}
