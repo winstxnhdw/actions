@@ -14,7 +14,7 @@ on:
         required: false
 
 jobs:
-  python:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,9 +38,51 @@ jobs:
       - name: Run linter
         run: poetry run pylint --recursive=y .
 
+  type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '*'
+          cache: poetry
+
+      - name: Install dependencies
+        run: poetry install
+
       - name: Run type checker
         run: poetry run pyright
 
+  test:
+    if: ${{ !inputs.disable-test }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '*'
+          cache: poetry
+
+      - name: Install dependencies
+        run: poetry install
+
       - name: Test
-        if: ${{ !inputs.disable-test }}
         run: poetry run pytest
