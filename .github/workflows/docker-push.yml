@@ -48,3 +48,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
