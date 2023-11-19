@@ -13,7 +13,7 @@ permissions:
 
 env:
   PR_URL: ${{ github.event.pull_request.html_url }}
-  GITHUB_TOKEN: ${{ secrets.token }}
+  GITHUB_TOKEN: ${{ secrets.token || github.token }}
 
 jobs:
   auto-merge:
