@@ -12,6 +12,10 @@ on:
         description: 'Files to skip'
         type: string
         required: false
+      ignore_words_file:
+        description: 'File containing words to ignore'
+        type: string
+        required: false
 
 jobs:
   codespell:
@@ -28,3 +32,4 @@ jobs:
         with:
           path: ${{ inputs.path }}
           skip: ${{ inputs.skip }}
+          ignore_words_file: ${{ inputs.ignore_words_file }}
