@@ -72,6 +72,8 @@ jobs:
 Reusable GitHub template [workflow](.github/workflows/create.yml) for dynamically renaming the repository when creating a new repository from a template.
 
 ```yml
+on: create
+
 permissions:
   contents: write
 
