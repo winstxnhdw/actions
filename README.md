@@ -55,6 +55,7 @@ jobs:
     with:
       path: /
       skip: ''
+      ignore_words_file: .codespellignore
 ```
 
 Minimally, you can use it in the following manner.
