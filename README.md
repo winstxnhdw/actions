@@ -67,6 +67,19 @@ jobs:
       path: /
 ```
 
+### create.yml
+
+Reusable GitHub template [workflow](.github/workflows/create.yml) for dynamically renaming the repository when creating a new repository from a template.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  create:
+    uses: winstxnhdw/actions/.github/workflows/create.yml@main
+```
+
 ### dependabot-private.yml
 
 Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-private.yml) for auto-merging Dependabot pull requests in private repositories.
