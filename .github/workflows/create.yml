@@ -17,7 +17,7 @@ jobs:
           show-progress: false
 
       - name: Remove unnecessary workflow files
-        run: rm .github/create.yml
+        run: rm .github/workflows/create.yml
 
       - name: Rename README title
         env:
