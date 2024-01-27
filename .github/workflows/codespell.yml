@@ -23,12 +23,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with:
           show-progress: false
 
       - name: Use Codespell
-        uses: codespell-project/actions-codespell@v2
+        uses: codespell-project/actions-codespell@v2.0
         with:
           path: ${{ inputs.path }}
           skip: ${{ inputs.skip }}
