@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4.1.1
+        uses: actions/download-artifact@v4.1.2
         with:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
