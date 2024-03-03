@@ -17,9 +17,12 @@ env:
 
 jobs:
   auto-merge:
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
 
     steps:
+      - name: Approve Dependabot PR
+        run: gh pr review --approve $PR_URL
+
       - name: Auto-merge Dependabot PRs
         run: gh pr merge --rebase $PR_URL || gh pr merge --auto --rebase $PR_URL

@@ -63,7 +63,7 @@ jobs:
         run: poetry run pyright
 
   test:
-    if: ${{ !inputs.disable-test }}
+    if: !inputs.disable-test
     runs-on: ubuntu-latest
 
     steps:

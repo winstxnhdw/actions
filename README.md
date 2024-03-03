@@ -17,7 +17,6 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
 - [release.yml](#releaseyml)
-- [renovate-public.yml](#renovate-publicyml)
 - [spaces-deploy.yml](#spaces-deployyml)
 - [spaces-restart.yml](#spaces-restartyml)
 - [spaces-warmer.yml](#spaces-warmeryml)
@@ -223,21 +222,6 @@ jobs:
       release-asset: dist/*
       artifact-name: build
       artifact-path: dist/
-```
-
-### renovate-public.yml
-
-Reusable [Renovate](https://github.com/renovatebot/renovate) [workflow](.github/workflows/renovate-public.yml) for auto-merging Renovate pull requests in public repositories.
-
-```yml
-permissions:
-  contents: write
-
-jobs:
-  auto-merge:
-    uses: winstxnhdw/actions/.github/workflows/renovate-public.yml@main
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### spaces-deploy.yml
