@@ -6,7 +6,7 @@ on:
     secrets:
       token:
         description: 'A GitHub token secret'
-        required: true
+        required: false
 
 permissions:
   contents: write
