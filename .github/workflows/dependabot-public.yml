@@ -22,6 +22,7 @@ jobs:
 
     steps:
       - name: Approve Dependabot PR
+        if: env.GITHUB_TOKEN != github.token
         run: gh pr review --approve $PR_URL
 
       - name: Auto-merge Dependabot PRs
