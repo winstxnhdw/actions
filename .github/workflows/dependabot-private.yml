@@ -21,8 +21,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Approve Dependabot PR
-        run: gh pr review --approve $PR_URL
+      - name: Auto-approve Dependabot PR
+        run: gh pr review --approve $PR_URL || true
 
-      - name: Auto-merge Dependabot PRs
+      - name: Auto-merge Dependabot PR
         run: gh pr merge --rebase $PR_URL || gh pr merge --auto --rebase $PR_URL
