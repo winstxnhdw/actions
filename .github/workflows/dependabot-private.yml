@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Auto-approve Dependabot PR
-        run: gh pr review --approve $PR_URL
+        run: gh pr review --approve $PR_URL || true
 
       - name: Auto-merge Dependabot PR
         run: gh pr merge --rebase $PR_URL || gh pr merge --auto --rebase $PR_URL
