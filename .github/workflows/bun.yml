@@ -38,11 +38,11 @@ jobs:
         run: bun lint
 
       - name: Test
-        if: !inputs.disable-test
+        if: ${{ !inputs.disable-test }}
         run: bun test
 
       - name: Build
-        if: !inputs.disable-build
+        if: ${{ !inputs.disable-build }}
         run: |
           read -a BUILD_ARGS <<< $BUILD_ARGS
           bun run build ${BUILD_ARGS[@]}
