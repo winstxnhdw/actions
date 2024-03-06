@@ -84,7 +84,7 @@ jobs:
 
 ### dependabot-private.yml
 
-Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-private.yml) for auto-merging Dependabot pull requests in private repositories.
+Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-private.yml) for auto-merging and/or auto-approving Dependabot pull requests in private repositories.
 
 ```yml
 permissions:
