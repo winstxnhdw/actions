@@ -7,6 +7,8 @@ on:
         description: 'A Hugging Face API token'
         required: true
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

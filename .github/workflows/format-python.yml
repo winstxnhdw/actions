@@ -2,6 +2,8 @@ name: Format
 
 on: workflow_call
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 permissions:
   contents: write
 

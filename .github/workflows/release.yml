@@ -24,6 +24,8 @@ on:
         type: string
         required: true
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 permissions:
   contents: write
 
