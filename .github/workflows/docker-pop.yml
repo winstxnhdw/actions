@@ -1,0 +1,28 @@
+name: Pop Docker Image
+
+on:
+  workflow_call:
+    secrets:
+      token:
+        description: 'A GitHub token secret'
+        required: true
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+permissions:
+  packages: write
+
+jobs:
+  pop:
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete latest image
+        uses: actions/delete-package-versions@v5
+        with:
+          package-version-ids: main
+          package-name: ${{ env.REPOSITORY_NAME }}
+          package-type: container
