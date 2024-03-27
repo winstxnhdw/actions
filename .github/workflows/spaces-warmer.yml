@@ -17,3 +17,9 @@ jobs:
       - name: cURL the API
         run: |
           [ "$(curl https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space/api/v1/)" = "Welcome to v1 of the API!" ]
+
+      - name: Restart on failure
+        if: failure()
+        run: |
+          curl -X POST https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart \
+               -H "Authorization: Bearer $HF_TOKEN"
