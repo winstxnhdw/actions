@@ -11,11 +11,9 @@ on:
       skip:
         description: 'Files to skip'
         type: string
-        required: false
       ignore_words_file:
         description: 'File containing words to ignore'
         type: string
-        required: false
 
 jobs:
   codespell:

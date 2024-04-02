@@ -6,12 +6,10 @@ on:
       python-version:
         description: 'Semantic Python version'
         type: string
-        required: false
         default: '*'
       disable-test:
         description: 'Disable tests if true'
         type: boolean
-        required: false
 
 jobs:
   lint:

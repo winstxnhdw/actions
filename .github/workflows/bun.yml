@@ -6,15 +6,12 @@ on:
       disable-test:
         description: 'Disable tests if true'
         type: boolean
-        required: false
       disable-build:
         description: 'Disable build if true'
         type: boolean
-        required: false
       build-args:
         description: 'Build arguments'
         type: string
-        required: false
 
 jobs:
   bun:

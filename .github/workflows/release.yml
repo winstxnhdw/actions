@@ -22,7 +22,7 @@ on:
       artifact-path:
         description: 'Artifact path'
         type: string
-        required: true
+        default: ${{ github.workspace }}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
