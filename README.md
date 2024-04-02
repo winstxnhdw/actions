@@ -224,6 +224,22 @@ jobs:
       artifact-path: dist/
 ```
 
+Minimally, you can use it in the following manner.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: winstxnhdw/actions/.github/workflows/release.yml@main
+    with:
+      release-tag: latest
+      release-title: Build
+      release-asset: dist/*
+      artifact-name: build
+```
+
 ### spaces-deploy.yml
 
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-deploy.yml) for deploying a `Dockerfile` to a Hugging Face Space of the same repository name.
