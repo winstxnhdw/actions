@@ -17,19 +17,13 @@ jobs:
         with:
           show-progress: false
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1.2.1
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2.1.1
         with:
-          bun-version: latest
+          version: latest
 
-      - name: Install node dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Fix lints
-        run: bun lint --fix
-
-      - name: Format with Prettier
-        run: bun prettier --write **.ts
+      - name: Run Biome
+        run: biome check --apply .
 
       - name: Set Git config
         run: |
