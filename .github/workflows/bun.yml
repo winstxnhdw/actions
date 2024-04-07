@@ -31,8 +31,8 @@ jobs:
       - name: Install node dependencies
         run: bun install --frozen-lockfile
 
-      - name: Lint
-        run: bun lint
+      - name: Run Biome
+        run: bun run biome ci .
 
       - name: Test
         if: ${{ !inputs.disable-test }}
