@@ -30,6 +30,8 @@ jobs:
   bun:
     uses: winstxnhdw/actions/.github/workflows/bun.yml@main
     with:
+      disable-formatter: false
+      disable-linter: false
       disable-test: false
       disable-build: false
       build-args: --test
