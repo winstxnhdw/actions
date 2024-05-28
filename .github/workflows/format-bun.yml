@@ -18,7 +18,7 @@ jobs:
           show-progress: false
 
       - name: Setup Biome
-        uses: biomejs/setup-biome@v2.2.0
+        uses: biomejs/setup-biome@v2.2.1
         with:
           version: latest
 
