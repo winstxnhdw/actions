@@ -17,6 +17,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
 - [release.yml](#releaseyml)
+- [rust.yml](#rustyml)
 - [spaces-deploy.yml](#spaces-deployyml)
 - [spaces-restart.yml](#spaces-restartyml)
 - [spaces-warmer.yml](#spaces-warmeryml)
@@ -134,7 +135,7 @@ jobs:
 
 ### format-bun.yml
 
-Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/format-bun.yml) for fixing Bun formatting and lints with [Prettier](https://github.com/prettier/prettier) and [ESLint](https://github.com/eslint/eslint).
+Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/format-bun.yml) for fixing Bun formatting and lints with [Biome](https://biomejs.dev).
 
 ```yml
 permissions:
@@ -240,6 +241,16 @@ jobs:
       release-title: Build
       release-asset: dist/*
       artifact-name: build
+```
+
+### rust.yml
+
+Reusable [Rust](https://www.rust-lang.org) [workflow](.github/workflows/rust.yml) for linting.
+
+```yml
+jobs:
+  rust:
+    uses: winstxnhdw/actions/.github/workflows/rust.yml@main
 ```
 
 ### spaces-deploy.yml
