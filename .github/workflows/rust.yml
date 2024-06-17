@@ -2,6 +2,11 @@ name: Rust
 
 on:
   workflow_call:
+    inputs:
+      toolchain:
+        description: 'Rustup toolchain specifier'
+        type: string
+        default: nightly
 
 jobs:
   lint:
@@ -25,6 +30,7 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
+          toolchain: ${{ inputs.toolchain }}
           components: clippy
 
       - name: Lint

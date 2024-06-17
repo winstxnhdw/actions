@@ -251,6 +251,16 @@ Reusable [Rust](https://www.rust-lang.org) [workflow](.github/workflows/rust.yml
 jobs:
   rust:
     uses: winstxnhdw/actions/.github/workflows/rust.yml@main
+    with:
+      toolchain: stable
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+jobs:
+  rust:
+    uses: winstxnhdw/actions/.github/workflows/rust.yml@main
 ```
 
 ### spaces-deploy.yml
