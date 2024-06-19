@@ -252,7 +252,7 @@ jobs:
   rust:
     uses: winstxnhdw/actions/.github/workflows/rust.yml@main
     with:
-      toolchain: stable
+      toolchain: nightly
 ```
 
 Minimally, you can use it in the following manner.
