@@ -267,6 +267,9 @@ jobs:
 
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-deploy.yml) for deploying a `Dockerfile` to a Hugging Face Space of the same repository name.
 
+> [!IMPORTANT]\
+> This workflow assumes that your Hugging Face account has the same user and repository name as the GitHub repository running this workflow.
+
 ```yml
 jobs:
   deploy:
@@ -279,6 +282,9 @@ jobs:
 
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-restart.yml) for factory restarting a Hugging Face Space of the same repository name.
 
+> [!IMPORTANT]\
+> This workflow assumes that your Hugging Face account has the same user and repository name as the GitHub repository running this workflow.
+
 ```yml
 jobs:
   restart:
@@ -290,6 +296,9 @@ jobs:
 ### spaces-warmer.yml
 
 Reusable [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) [workflow](.github/workflows/spaces-warmer.yml) for warming a Hugging Face Space of the same repository name.
+
+> [!IMPORTANT]\
+> This workflow assumes that your Hugging Face account has the same user and repository name as the GitHub repository running this workflow.
 
 ```yml
 name: Warm
