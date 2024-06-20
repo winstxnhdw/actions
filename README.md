@@ -319,4 +319,29 @@ on:
 jobs:
   warm:
     uses: winstxnhdw/actions/.github/workflows/spaces-warmer.yml@main
+    secrets:
+      token: ${{ secrets.HF_TOKEN }}
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+name: Warm
+
+on:
+  schedule:
+    #       ┌──────────────── minute (0 - 59)
+    #       │ ┌────────────── hour (0 - 23)
+    #       │ │ ┌──────────── day of the month (1 - 31)
+    #       │ │ │   ┌──────── month (1 - 12 or JAN-DEC)
+    #       │ │ │   │ ┌────── day of the week (0 - 6 or SUN-SAT)
+    #       │ │ │   │ │
+    #       │ │ │   │ │
+    #       │ │ │   │ │
+    #       * * *   * *
+    - cron: 0 0 */2 * *
+
+jobs:
+  warm:
+    uses: winstxnhdw/actions/.github/workflows/spaces-warmer.yml@main
 ```
