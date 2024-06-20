@@ -15,13 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: cURL Swagger
-        run: |
-          [ ! "$(curl https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space/api/docs -H "Authorization: Bearer $HF_TOKEN")" = "{\"detail\":\"Not Found\"}" ]
-
       - name: cURL the API
         run: |
-          [ "$(curl https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space/api/v1 -H "Authorization: Bearer $HF_TOKEN")" = "Welcome to v1 of the API!" ]
+          curl -f https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space -H "Authorization: Bearer $HF_TOKEN"
 
       - name: Restart on failure
         if: failure()
