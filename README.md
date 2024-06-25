@@ -253,6 +253,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/rust.yml@main
     with:
       toolchain: nightly
+      disable-test: false
 ```
 
 Minimally, you can use it in the following manner.
