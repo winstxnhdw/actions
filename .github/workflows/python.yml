@@ -3,6 +3,10 @@ name: Python
 on:
   workflow_call:
     inputs:
+      runs-on:
+        description: 'Runner operating system'
+        type: string
+        default: ubuntu-latest
       python-version:
         description: 'Semantic Python version'
         type: string
@@ -13,7 +17,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
 
     steps:
       - name: Checkout repository
@@ -37,7 +41,7 @@ jobs:
         run: poetry run pylint --recursive=y .
 
   type-check:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
 
     steps:
       - name: Checkout repository
@@ -62,7 +66,7 @@ jobs:
 
   test:
     if: ${{ !inputs.disable-test }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
 
     steps:
       - name: Checkout repository
