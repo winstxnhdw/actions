@@ -321,6 +321,8 @@ on:
 jobs:
   warm:
     uses: winstxnhdw/actions/.github/workflows/spaces-warmer.yml@main
+    with:
+      path: '/api/v3'
     secrets:
       token: ${{ secrets.HF_TOKEN }}
 ```

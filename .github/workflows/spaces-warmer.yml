@@ -1,10 +1,15 @@
 name: Warm
 
-on: 
+on:
   workflow_call:
     secrets:
       token:
         description: 'A Hugging Face API token'
+    inputs:
+      path:
+        description: 'Path'
+        type: string
+        default: ''
 
 env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
@@ -16,8 +21,10 @@ jobs:
 
     steps:
       - name: cURL the API
+        env:
+          QUERY_PATH: ${{ inputs.path }}
         run: |
-          curl -f https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space -H "Authorization: Bearer $HF_TOKEN"
+          curl -f https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space$QUERY_PATH -H "Authorization: Bearer $HF_TOKEN"
 
       - name: Restart on failure
         if: failure()
