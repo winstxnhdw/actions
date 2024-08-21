@@ -13,6 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
         with:
+          fetch-depth: 0
           show-progress: false
 
       - name: Set Git config
