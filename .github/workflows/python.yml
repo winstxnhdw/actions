@@ -38,7 +38,7 @@ jobs:
         run: poetry install
 
       - name: Run linter
-        run: poetry run pylint --recursive=y .
+        run: poetry run ruff check
 
   type-check:
     runs-on: ${{ inputs.runs-on }}

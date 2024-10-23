@@ -189,7 +189,7 @@ jobs:
 
 ### python.yml
 
-Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/python.yml) for lint/test/build with [Poetry](https://github.com/python-poetry/poetry), [Pylint](https://github.com/pylint-dev/pylint) and [Pyright](https://github.com/microsoft/pyright).
+Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/python.yml) for lint/test/build with [Poetry](https://github.com/python-poetry/poetry), [Ruff](https://docs.astral.sh/ruff) and [Pyright](https://github.com/microsoft/pyright).
 
 ```yml
 jobs:
