@@ -17,10 +17,13 @@ jobs:
         with:
           show-progress: false
 
-      - name: Fix lints
-        uses: chartboost/ruff-action@v1.0.0
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
         with:
-          args: check --select I --fix
+          enable-cache: true
+
+      - name: Fix lints
+        run: uvx ruff check --select I --fix
 
       - name: Set Git config
         run: |
