@@ -1,6 +1,12 @@
 name: Format
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      cache-dependency-glob:
+        description: 'Glob pattern to match files to invalidate the cache'
+        type: string
+        default: '**/uv.lock'
 
 concurrency: ${{ github.job }}-${{ github.ref }}
 
@@ -21,6 +27,7 @@ jobs:
         uses: astral-sh/setup-uv@v3.2.0
         with:
           enable-cache: true
+          cache-dependency-glob: ${{ inputs.cache-dependency-glob }}
 
       - name: Fix lints
         run: uvx ruff check --select I --fix
