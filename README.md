@@ -9,6 +9,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 
 - [bun.yml](#bunyml)
 - [codespell.yml](#codespellyml)
+- [create.yml](#createyml)
 - [dependabot-private.yml](#dependabot-privateyml)
 - [dependabot-public.yml](#dependabot-publicyml)
 - [docker-push.yml](#docker-pushyml)
