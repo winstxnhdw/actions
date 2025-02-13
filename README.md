@@ -22,6 +22,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [spaces-deploy.yml](#spaces-deployyml)
 - [spaces-restart.yml](#spaces-restartyml)
 - [spaces-warmer.yml](#spaces-warmeryml)
+- [uv.yml](#uvyml)
 
 ### bun.yml
 
@@ -363,4 +364,26 @@ on:
 jobs:
   warm:
     uses: winstxnhdw/actions/.github/workflows/spaces-warmer.yml@main
+```
+
+### uv.yml
+
+Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/python.yml) for lint/test/build with [uv](https://github.com/astral-sh/uv), [Ruff](https://docs.astral.sh/ruff) and [Pyright](https://github.com/microsoft/pyright).
+
+```yml
+jobs:
+  python:
+    uses: winstxnhdw/actions/.github/workflows/uv.yml@main
+    with:
+      runs-on: ubuntu-latest
+      python-version: '*'
+      disable-test: false
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+jobs:
+  python:
+    uses: winstxnhdw/actions/.github/workflows/uv.yml@main
 ```

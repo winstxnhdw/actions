@@ -1,0 +1,72 @@
+name: Python
+
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'Runner operating system'
+        type: string
+        default: ubuntu-latest
+      python-version:
+        description: 'Semantic Python version'
+        type: string
+        default: '*'
+      disable-test:
+        description: 'Disable tests if true'
+        type: boolean
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+        with:
+          show-progress: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5.2.2
+        with:
+          python-version: ${{ inputs.python-version }}
+          enable-cache: true
+
+      - name: Run linter
+        run: uvx ruff check
+
+  type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+        with:
+          show-progress: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5.2.2
+        with:
+          python-version: ${{ inputs.python-version }}
+          enable-cache: true
+
+      - name: Run type checker
+        run: uv run pyright
+
+  test:
+    if: ${{ !inputs.disable-test }}
+    runs-on: ${{ inputs.runs-on }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+        with:
+          show-progress: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5.2.2
+        with:
+          python-version: ${{ inputs.python-version }}
+          enable-cache: true
+
+      - name: Run test(s)
+        run: uv run pytest
