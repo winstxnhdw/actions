@@ -32,6 +32,9 @@ jobs:
       - name: Fix lints
         run: uvx ruff check --fix
 
+      - name: Fix format
+        run: uvx ruff format
+
       - name: Set Git config
         run: |
           git config user.email github-actions[bot]@users.noreply.github.com
