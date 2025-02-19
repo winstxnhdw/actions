@@ -10,7 +10,7 @@ on:
       python-version:
         description: 'Semantic Python version'
         type: string
-        default: '*'
+        default: 'latest'
       disable-test:
         description: 'Disable tests if true'
         type: boolean
