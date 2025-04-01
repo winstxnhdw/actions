@@ -368,7 +368,7 @@ jobs:
 
 ### uv.yml
 
-Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/python.yml) for lint/test/build with [uv](https://github.com/astral-sh/uv), [Ruff](https://docs.astral.sh/ruff) and [Pyright](https://github.com/microsoft/pyright).
+Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/uv.yml) for lint/test/build with [uv](https://github.com/astral-sh/uv), [Ruff](https://docs.astral.sh/ruff) and [Pyright](https://github.com/microsoft/pyright).
 
 ```yml
 jobs:
