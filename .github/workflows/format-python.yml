@@ -26,7 +26,6 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5.4.1
         with:
-          enable-cache: true
           cache-dependency-glob: ${{ inputs.cache-dependency-glob }}
 
       - name: Fix lints
