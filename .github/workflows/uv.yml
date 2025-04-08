@@ -30,6 +30,7 @@ jobs:
         with:
           python-version: ${{ inputs.python-version }}
           enable-cache: true
+          cache-dependency-glob: '**/uv.lock'
 
       - name: Run linter
         run: uvx ruff check
