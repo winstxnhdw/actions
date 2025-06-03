@@ -14,6 +14,10 @@ on:
         description: 'Disable tests if true'
         type: boolean
 
+env:
+  UV_LINK_MODE: hardlink
+  UV_LOCKED: 1
+
 jobs:
   lint:
     runs-on: ubuntu-latest
