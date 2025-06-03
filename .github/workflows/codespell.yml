@@ -7,7 +7,7 @@ on:
       path:
         description: 'Path to check'
         type: string
-        required: true
+        default: .
       skip:
         description: 'Files to skip'
         type: string
@@ -31,3 +31,5 @@ jobs:
           path: ${{ inputs.path }}
           skip: ${{ inputs.skip }}
           ignore_words_file: ${{ inputs.ignore_words_file }}
+          check_hidden: true
+          check_filenames: true
