@@ -68,8 +68,6 @@ Minimally, you can use it in the following manner.
 jobs:
   codespell:
     uses: winstxnhdw/actions/.github/workflows/codespell.yml@main
-    with:
-      path: /
 ```
 
 ### create.yml
