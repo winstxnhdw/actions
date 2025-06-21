@@ -13,6 +13,9 @@ env:
 jobs:
   restart:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://huggingface.co/spaces/${{ github.repository }}
 
     steps:
       - name: Factory restart API
