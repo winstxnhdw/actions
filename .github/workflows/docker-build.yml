@@ -1,4 +1,4 @@
-name: Push Docker Image
+name: Build Docker Image
 
 on:
   workflow_call:
@@ -7,19 +7,9 @@ on:
         description: 'Path to Dockerfile'
         type: string
         default: Dockerfile
-    secrets:
-      token:
-        description: 'A GitHub token secret'
-        required: true
-
-permissions:
-  packages: write
-
-env:
-  REGISTRY: ghcr.io
 
 jobs:
-  push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,24 +21,17 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3.4.0
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.token }}
-
       - name: Extract metadata for Docker
         uses: docker/metadata-action@v5.7.0
         id: meta
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}
+          images: ghcr.io/${{ github.repository }}
 
-      - name: Push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v6.18.0
         with:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
-          push: true
           cache-from: type=gha
+          cache-to: type=gha,mode=max

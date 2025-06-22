@@ -12,6 +12,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [create.yml](#createyml)
 - [dependabot-private.yml](#dependabot-privateyml)
 - [dependabot-public.yml](#dependabot-publicyml)
+- [docker-build.yml](#docker-buildyml)
 - [docker-push.yml](#docker-pushyml)
 - [format-bun.yml](#format-bunyml)
 - [format-python.yml](#format-pythonyml)
@@ -116,6 +117,26 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+### docker-build.yml
+
+Reusable [Docker](https://github.com/docker/build-push-action) [workflow](.github/workflows/docker-build.yml) for building Docker images.
+
+```yml
+jobs:
+  build:
+    uses: winstxnhdw/actions/.github/workflows/docker-build.yml@main
+    with:
+      file: Dockerfile.build
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+jobs:
+  build:
+    uses: winstxnhdw/actions/.github/workflows/docker-build.yml@main
+```
+
 ### docker-push.yml
 
 Reusable [Docker](https://github.com/docker/build-push-action) [workflow](.github/workflows/docker-push.yml) for pushing Docker images into the GitHub Container registry.
@@ -129,6 +150,19 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/docker-push.yml@main
     with:
       file: Dockerfile.build
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+permissions:
+  packages: write
+
+jobs:
+  build:
+    uses: winstxnhdw/actions/.github/workflows/docker-push.yml@main
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -171,7 +205,6 @@ jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
 ```
-
 
 ### keep-alive.yml
 
