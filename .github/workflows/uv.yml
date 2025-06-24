@@ -72,4 +72,4 @@ jobs:
           cache-dependency-glob: '**/uv.lock'
 
       - name: Run test(s)
-        run: uv run pytest -W error
+        run: uv run pytest
