@@ -31,6 +31,5 @@ jobs:
 
       - name: Reword initial commit
         run: |
-          git add .
-          git commit --amend -m "chore: initialise repository"
+          git commit --amend -am "chore: initialise repository"
           git push --force-with-lease

@@ -41,7 +41,6 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add .
-          git commit -m "style: format scripts" || exit 0
+          git commit -am "style: format scripts" || exit 0
           git pull --rebase --autostash
           git push
