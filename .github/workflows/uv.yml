@@ -13,6 +13,10 @@ on:
       disable-test:
         description: 'Disable tests if true'
         type: boolean
+      working-directory:
+        description: 'Working directory for the workflow'
+        type: string
+        default: .
 
 env:
   UV_LINK_MODE: hardlink
@@ -21,6 +25,9 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - name: Checkout repository
@@ -39,6 +46,9 @@ jobs:
 
   type-check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - name: Checkout repository
@@ -58,6 +68,9 @@ jobs:
   test:
     if: ${{ !inputs.disable-test }}
     runs-on: ${{ inputs.runs-on }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - name: Checkout repository

@@ -409,6 +409,7 @@ jobs:
       runs-on: ubuntu-latest
       python-version: '*'
       disable-test: false
+      working-directory: .
 ```
 
 Minimally, you can use it in the following manner.
