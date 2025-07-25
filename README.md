@@ -127,6 +127,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/docker-build.yml@main
     with:
       file: Dockerfile.build
+      cache-mode: max
 ```
 
 Minimally, you can use it in the following manner.
