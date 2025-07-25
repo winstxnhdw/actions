@@ -7,6 +7,10 @@ on:
         description: 'Path to Dockerfile'
         type: string
         default: Dockerfile
+      cache-mode:
+        description: 'Cache mode for Docker builds'
+        type: string
+        default: max
 
 jobs:
   build:
@@ -34,4 +38,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-to: type=gha,mode={{ inputs.cache-mode }}
