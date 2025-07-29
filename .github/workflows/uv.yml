@@ -13,6 +13,10 @@ on:
       disable-test:
         description: 'Disable tests if true'
         type: boolean
+      install-project:
+        description: 'Install the project if true'
+        type: boolean
+        default: false
       working-directory:
         description: 'Working directory for the workflow'
         type: string
@@ -86,3 +90,23 @@ jobs:
 
       - name: Run test(s)
         run: uv run pytest
+
+  install:
+    if: ${{ inputs.install-project }}
+    runs-on: ${{ inputs.runs-on }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+        with:
+          show-progress: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6.4.1
+        with:
+            python-version: ${{ inputs.python-version }}
+            activate-environment: true
+            cache-dependency-glob: '**/uv.lock'
+
+      - name: Install scipath
+        run: uv pip install .

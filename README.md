@@ -410,6 +410,7 @@ jobs:
       runs-on: ubuntu-latest
       python-version: '*'
       disable-test: false
+      install-project: false
       working-directory: .
 ```
 
