@@ -22,7 +22,6 @@ on:
       install-project:
         description: 'Install the project if true'
         type: boolean
-        default: false
       working-directory:
         description: 'Working directory for the workflow'
         type: string
