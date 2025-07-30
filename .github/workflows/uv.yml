@@ -101,6 +101,9 @@ jobs:
   install:
     if: ${{ inputs.install-project }}
     runs-on: ${{ inputs.runs-on }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - name: Checkout repository
@@ -115,5 +118,5 @@ jobs:
             activate-environment: true
             cache-dependency-glob: '**/uv.lock'
 
-      - name: Install scipath
+      - name: Install project
         run: uv pip install .
