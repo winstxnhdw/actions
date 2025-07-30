@@ -10,6 +10,12 @@ on:
       python-version:
         description: 'Semantic Python version'
         type: string
+      disable-lint:
+        description: 'Disable linting if true'
+        type: boolean
+      disable-type-check:
+        description: 'Disable type checking if true'
+        type: boolean
       disable-test:
         description: 'Disable tests if true'
         type: boolean
@@ -28,6 +34,7 @@ env:
 
 jobs:
   lint:
+    if: ${{ !inputs.disable-lint }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -49,6 +56,7 @@ jobs:
         run: uvx ruff check
 
   type-check:
+    if: ${{ !inputs.disable-type-check }}
     runs-on: ubuntu-latest
     defaults:
       run:

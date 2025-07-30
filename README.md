@@ -409,6 +409,8 @@ jobs:
     with:
       runs-on: ubuntu-latest
       python-version: '*'
+      disable-lint: false
+      disable-type-check: false
       disable-test: false
       install-project: false
       working-directory: .
