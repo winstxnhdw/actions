@@ -14,7 +14,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [dependabot-public.yml](#dependabot-publicyml)
 - [docker-build.yml](#docker-buildyml)
 - [docker-push.yml](#docker-pushyml)
-- [format-bun.yml](#format-bunyml)
+- [format-biome.yml](#format-biomeyml)
 - [format-python.yml](#format-pythonyml)
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
@@ -168,9 +168,9 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### format-bun.yml
+### format-biome.yml
 
-Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/format-bun.yml) for fixing Bun formatting and lints with [Biome](https://biomejs.dev).
+Reusable [Bun](https://github.com/oven-sh/bun) [workflow](.github/workflows/format-biome.yml) for fixing Bun formatting and lints with [Biome](https://biomejs.dev).
 
 ```yml
 permissions:
@@ -178,7 +178,7 @@ permissions:
 
 jobs:
   format:
-    uses: winstxnhdw/actions/.github/workflows/format-bun.yml@main
+    uses: winstxnhdw/actions/.github/workflows/format-biome.yml@main
 ```
 
 ### format-python.yml
