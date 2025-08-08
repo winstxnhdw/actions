@@ -9,7 +9,6 @@ on:
         default: '**/uv.lock'
 
 concurrency: ${{ github.job }}-${{ github.ref }}
-
 permissions:
   contents: write
 
@@ -42,5 +41,5 @@ jobs:
       - name: Commit changes
         run: |
           git commit -am "style: format scripts" || exit 0
-          git pull --rebase --autostash
+          git pull --autostash --rebase origin ${{ github.head_ref || github.ref_name }}
           git push
