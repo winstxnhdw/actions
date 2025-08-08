@@ -23,7 +23,7 @@ jobs:
 
       - name: Push and revert dummy commit
         run: |
-          [ $(( $(date +%s) - $(git show -s --format=%ct) )) -lt 2629746  ] && exit 0
+          [ $(( $(date +%s) - $(git show -s --format=%ct) )) -lt 2629746  ] && true
           git commit --allow-empty -m "chore: keep alive commit"
           git push
           git reset HEAD^
