@@ -56,7 +56,7 @@ jobs:
 
   type-check:
     if: ${{ !inputs.disable-type-check }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
@@ -120,3 +120,4 @@ jobs:
 
       - name: Install project
         run: uv pip install .
+
