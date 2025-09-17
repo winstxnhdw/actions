@@ -193,6 +193,7 @@ jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
     with:
+      recursive-clone: false
       cache-dependency-glob: '**/uv.lock'
 ```
 
@@ -408,6 +409,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/uv.yml@main
     with:
       runs-on: ubuntu-latest
+      recursive-clone: false
       python-version: '*'
       disable-lint: false
       disable-type-check: false
