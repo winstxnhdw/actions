@@ -1,4 +1,4 @@
-name: Python
+name: uv
 
 on:
   workflow_call:
@@ -7,6 +7,9 @@ on:
         description: 'Runner operating system'
         type: string
         default: ubuntu-latest
+      recursive-clone:
+        description: 'Recursively clone repository'
+        type: boolean
       python-version:
         description: 'Semantic Python version'
         type: string
@@ -44,6 +47,7 @@ jobs:
         uses: actions/checkout@v5.0.0
         with:
           show-progress: false
+          submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6.7.0
@@ -66,6 +70,7 @@ jobs:
         uses: actions/checkout@v5.0.0
         with:
           show-progress: false
+          submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6.7.0
@@ -88,6 +93,7 @@ jobs:
         uses: actions/checkout@v5.0.0
         with:
           show-progress: false
+          submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6.7.0
@@ -110,6 +116,7 @@ jobs:
         uses: actions/checkout@v5.0.0
         with:
           show-progress: false
+          submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6.7.0
@@ -120,4 +127,5 @@ jobs:
 
       - name: Install project
         run: uv pip install .
+
 
