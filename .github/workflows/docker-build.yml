@@ -4,13 +4,17 @@ on:
   workflow_call:
     inputs:
       file:
-        description: 'Path to Dockerfile'
+        description: "Path to Dockerfile"
         type: string
         default: Dockerfile
       cache-mode:
-        description: 'Cache mode for Docker builds'
+        description: "Cache mode for the Docker build"
         type: string
         default: max
+      build-args:
+        description: "Build-time variables for the Docker build"
+        type: string
+        default: ""
 
 jobs:
   build:
@@ -37,5 +41,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
+          build-args: ${{ inputs.build-args }}
           cache-from: type=gha
           cache-to: type=gha,mode={{ inputs.cache-mode }}

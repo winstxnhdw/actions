@@ -128,6 +128,9 @@ jobs:
     with:
       file: Dockerfile.build
       cache-mode: max
+      build-args: |
+        ARG_1=arg_1_value
+        ARG_2=arg_2_value
 ```
 
 Minimally, you can use it in the following manner.
