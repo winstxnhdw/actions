@@ -24,7 +24,9 @@ on:
         type: string
         default: ${{ github.workspace }}
 
-concurrency: ${{ github.job }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
 
 permissions:
   contents: write
