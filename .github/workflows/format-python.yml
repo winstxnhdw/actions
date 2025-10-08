@@ -32,7 +32,7 @@ jobs:
           cache-dependency-glob: ${{ inputs.cache-dependency-glob }}
 
       - name: Fix lints
-        run: uvx ruff check --fix --diff
+        run: uvx ruff check --fix --show-fixes
 
       - name: Show format fixed
         run: uvx ruff format --diff
