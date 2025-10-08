@@ -32,13 +32,10 @@ jobs:
           cache-dependency-glob: ${{ inputs.cache-dependency-glob }}
 
       - name: Fix lints
-        run: uvx ruff check --fix --show-fixes
-
-      - name: Show format fixed
-        run: uvx ruff format --diff
+        run: uvx ruff check --diff || uvx ruff check --fix
 
       - name: Fix format
-        run: uvx ruff format
+        run: uvx ruff format --diff || uvx ruff format
 
       - name: Set Git config
         run: |
