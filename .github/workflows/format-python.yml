@@ -34,8 +34,11 @@ jobs:
       - name: Fix lints
         run: uvx ruff check --fix --diff
 
-      - name: Fix format
+      - name: Show format fixed
         run: uvx ruff format --diff
+
+      - name: Fix format
+        run: uvx ruff format
 
       - name: Set Git config
         run: |
