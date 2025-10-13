@@ -50,7 +50,7 @@ jobs:
           submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7.0.0
+        uses: astral-sh/setup-uv@v7.1.0
         with:
           python-version: ${{ inputs.python-version }}
           cache-dependency-glob: '**/uv.lock'
@@ -73,7 +73,7 @@ jobs:
           submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7.0.0
+        uses: astral-sh/setup-uv@v7.1.0
         with:
           python-version: ${{ inputs.python-version }}
           cache-dependency-glob: '**/uv.lock'
@@ -96,7 +96,7 @@ jobs:
           submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7.0.0
+        uses: astral-sh/setup-uv@v7.1.0
         with:
           python-version: ${{ inputs.python-version }}
           cache-dependency-glob: '**/uv.lock'
@@ -119,7 +119,7 @@ jobs:
           submodules: ${{ inputs.recursive-clone }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7.0.0
+        uses: astral-sh/setup-uv@v7.1.0
         with:
             python-version: ${{ inputs.python-version }}
             activate-environment: true
