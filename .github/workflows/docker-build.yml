@@ -38,6 +38,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v6.18.0
         with:
+          outputs: type=cacheonly
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
