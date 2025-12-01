@@ -57,6 +57,16 @@ Reusable [Clippy](https://github.com/rust-lang/rust-clippy) [workflow](.github/w
 jobs:
   clippy:
     uses: winstxnhdw/actions/.github/workflows/clippy.yml@main
+    with:
+      working-directory: .
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+jobs:
+  clippy:
+    uses: winstxnhdw/actions/.github/workflows/clippy.yml@main
 ```
 
 ### codespell.yml
