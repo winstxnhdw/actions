@@ -49,6 +49,16 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/bun.yml@main
 ```
 
+### clippy.yml
+
+Reusable [Clippy](https://github.com/rust-lang/rust-clippy) [workflow](.github/workflows/clippy.yml) for linting Rust code.
+
+```yml
+jobs:
+  clippy:
+    uses: winstxnhdw/actions/.github/workflows/clippy.yml@main
+```
+
 ### codespell.yml
 
 Reusable [codespell](https://github.com/codespell-project/codespell) [workflow](.github/workflows/codespell.yml) for checking misspelled words in source code.
