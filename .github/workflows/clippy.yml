@@ -33,9 +33,9 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Setup Rust
-        uses: dtolnay/rust-toolchain@nightly
-        with:
-          components: clippy
+        run: |
+          rustup default nightly
+          rustup update nightly
 
       - name: Lint
         run: cargo clippy
