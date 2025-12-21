@@ -35,7 +35,8 @@ jobs:
       - name: Setup Rust
         run: |
           rustup default nightly
-          rustup update nightly
+          rustup component add clippy
+          rustup update
 
       - name: Lint
         run: cargo clippy
