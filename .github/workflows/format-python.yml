@@ -44,6 +44,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          export BRANCH=${{ github.head_ref || github.ref_name }}
           git commit -am "style: format scripts" || true
-          git pull --autostash --rebase origin ${{ github.head_ref || github.ref_name }}
-          git push
+          git pull --autostash --rebase origin $BRANCH
+          git push origin HEAD:$BRANCH
