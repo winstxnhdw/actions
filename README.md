@@ -8,6 +8,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 ## Workflows
 
 - [bun.yml](#bunyml)
+- [clippy.yml](#clippyyml)
 - [codespell.yml](#codespellyml)
 - [create.yml](#createyml)
 - [dependabot-private.yml](#dependabot-privateyml)
