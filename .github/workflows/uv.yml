@@ -31,7 +31,6 @@ on:
         default: .
 
 env:
-  UV_LINK_MODE: hardlink
   UV_LOCKED: 1
 
 jobs:
@@ -127,5 +126,6 @@ jobs:
 
       - name: Install project
         run: uv pip install .
+
 
 
