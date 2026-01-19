@@ -52,7 +52,6 @@ jobs:
         uses: astral-sh/setup-uv@v7.2.0
         with:
           python-version: ${{ inputs.python-version }}
-          cache-dependency-glob: '**/uv.lock'
 
       - name: Run linter
         run: uvx ruff check --diff
@@ -75,7 +74,6 @@ jobs:
         uses: astral-sh/setup-uv@v7.2.0
         with:
           python-version: ${{ inputs.python-version }}
-          cache-dependency-glob: '**/uv.lock'
 
       - name: Run type checker
         run: uv run pyright
@@ -98,7 +96,6 @@ jobs:
         uses: astral-sh/setup-uv@v7.2.0
         with:
           python-version: ${{ inputs.python-version }}
-          cache-dependency-glob: '**/uv.lock'
 
       - name: Run test(s)
         run: uv run pytest
@@ -122,10 +119,10 @@ jobs:
         with:
             python-version: ${{ inputs.python-version }}
             activate-environment: true
-            cache-dependency-glob: '**/uv.lock'
 
       - name: Install project
         run: uv pip install .
+
 
 
 
