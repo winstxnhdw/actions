@@ -27,7 +27,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Lint
-        run: cargo clippy
+        run: cargo clippy -- -Dwarnings
 
   test:
     if: ${{ !inputs.disable-test }}
