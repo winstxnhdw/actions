@@ -8,7 +8,6 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 ## Workflows
 
 - [bun.yml](#bunyml)
-- [clippy.yml](#clippyyml)
 - [codespell.yml](#codespellyml)
 - [create.yml](#createyml)
 - [dependabot-private.yml](#dependabot-privateyml)
@@ -48,26 +47,6 @@ Minimally, you can use it in the following manner.
 jobs:
   bun:
     uses: winstxnhdw/actions/.github/workflows/bun.yml@main
-```
-
-### clippy.yml
-
-Reusable [Clippy](https://github.com/rust-lang/rust-clippy) [workflow](.github/workflows/clippy.yml) for linting Rust code.
-
-```yml
-jobs:
-  clippy:
-    uses: winstxnhdw/actions/.github/workflows/clippy.yml@main
-    with:
-      working-directory: .
-```
-
-Minimally, you can use it in the following manner.
-
-```yml
-jobs:
-  clippy:
-    uses: winstxnhdw/actions/.github/workflows/clippy.yml@main
 ```
 
 ### codespell.yml

@@ -3,10 +3,6 @@ name: Rust
 on:
   workflow_call:
     inputs:
-      toolchain:
-        description: 'Rustup toolchain specifier'
-        type: string
-        default: nightly
       disable-test:
         description: 'Disable tests if true'
         type: boolean
@@ -30,14 +26,8 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@nightly
-        with:
-          toolchain: ${{ inputs.toolchain }}
-          components: clippy
-
       - name: Lint
-        run: cargo clippy
+        run: cargo clippy -- -Dwarnings
 
   test:
     if: ${{ !inputs.disable-test }}
@@ -57,11 +47,6 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@nightly
-        with:
-          toolchain: ${{ inputs.toolchain }}
 
       - name: Test
         run: cargo test
