@@ -26,6 +26,9 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Install clippy
+        run: rustup component add clippy
+
       - name: Lint
         run: cargo clippy -- -Dwarnings
 
