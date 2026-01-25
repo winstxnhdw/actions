@@ -305,7 +305,7 @@ jobs:
   rust:
     uses: winstxnhdw/actions/.github/workflows/rust.yml@main
     with:
-      toolchain: nightly
+      working-directory: .
       disable-test: false
 ```
 
