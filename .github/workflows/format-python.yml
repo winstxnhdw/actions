@@ -1,15 +1,6 @@
 name: Format
 
-on:
-  workflow_call:
-    inputs:
-      cache-dependency-glob:
-        description: 'Glob pattern to match files to invalidate the cache'
-        type: string
-        default: '**/uv.lock'
-      recursive-clone:
-        description: 'Recursively clone repository'
-        type: boolean
+on: [workflow_call]
 
 concurrency: ${{ github.job }}-${{ github.ref }}
 permissions:
@@ -24,7 +15,6 @@ jobs:
         uses: actions/checkout@v6.0.2
         with:
           show-progress: false
-          submodules: ${{ inputs.recursive-clone }}
           ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Install uv

@@ -195,20 +195,6 @@ permissions:
 jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
-    with:
-      recursive-clone: false
-      cache-dependency-glob: '**/uv.lock'
-```
-
-Minimally, you can use it in the following manner.
-
-```yml
-permissions:
-  contents: write
-
-jobs:
-  format:
-    uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
 ```
 
 ### keep-alive.yml
