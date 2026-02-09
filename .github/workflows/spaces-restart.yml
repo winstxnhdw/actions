@@ -12,7 +12,7 @@ env:
 
 jobs:
   restart:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     environment:
       name: production
       url: https://huggingface.co/spaces/${{ github.repository }}
