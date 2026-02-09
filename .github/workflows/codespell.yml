@@ -5,19 +5,19 @@ on:
   workflow_call:
     inputs:
       path:
-        description: 'Path to check'
+        description: "Path to check"
         type: string
         default: .
       skip:
-        description: 'Files to skip'
+        description: "Files to skip"
         type: string
       ignore_words_file:
-        description: 'File containing words to ignore'
+        description: "File containing words to ignore"
         type: string
 
 jobs:
   codespell:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository

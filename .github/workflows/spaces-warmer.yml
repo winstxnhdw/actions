@@ -4,12 +4,12 @@ on:
   workflow_call:
     secrets:
       token:
-        description: 'A Hugging Face API token'
+        description: "A Hugging Face API token"
     inputs:
       path:
-        description: 'Path'
+        description: "Path"
         type: string
-        default: ''
+        default: ""
 
 env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
@@ -17,7 +17,7 @@ env:
 
 jobs:
   warm:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: cURL the API
