@@ -11,7 +11,7 @@ concurrency: ${{ github.job }}-${{ github.ref }}
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     environment:
       name: production
       url: https://huggingface.co/spaces/${{ github.repository }}
