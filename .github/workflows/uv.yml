@@ -4,29 +4,29 @@ on:
   workflow_call:
     inputs:
       runs-on:
-        description: 'Runner operating system'
+        description: "Runner operating system"
         type: string
         default: ubuntu-latest
       recursive-clone:
-        description: 'Recursively clone repository'
+        description: "Recursively clone repository"
         type: boolean
       python-version:
-        description: 'Semantic Python version'
+        description: "Semantic Python version"
         type: string
       disable-lint:
-        description: 'Disable linting if true'
+        description: "Disable linting if true"
         type: boolean
       disable-type-check:
-        description: 'Disable type checking if true'
+        description: "Disable type checking if true"
         type: boolean
       disable-test:
-        description: 'Disable tests if true'
+        description: "Disable tests if true"
         type: boolean
       install-project:
-        description: 'Install the project if true'
+        description: "Install the project if true"
         type: boolean
       working-directory:
-        description: 'Working directory for the workflow'
+        description: "Working directory for the workflow"
         type: string
         default: .
 
@@ -117,12 +117,10 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7.3.0
         with:
-            python-version: ${{ inputs.python-version }}
-            activate-environment: true
+          python-version: ${{ inputs.python-version }}
+
+      - name: Build sdist
+        run: uv build --sdist
 
       - name: Install project
-        run: uv pip install .
-
-
-
-
+        run: uv pip install *.tar.gz
