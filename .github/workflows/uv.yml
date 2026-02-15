@@ -124,4 +124,6 @@ jobs:
         run: uv build --sdist
 
       - name: Install project
+        shell: bash
         run: uv pip install dist/*.tar.gz
+
