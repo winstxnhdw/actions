@@ -36,7 +36,7 @@ jobs:
           images: ghcr.io/${{ github.repository }}
 
       - name: Build Docker image
-        uses: docker/build-push-action@v6.19.2
+        uses: docker/build-push-action@v6.18.0
         with:
           outputs: type=cacheonly
           labels: ${{ steps.meta.outputs.labels }}
@@ -44,4 +44,4 @@ jobs:
           file: ${{ inputs.file }}
           build-args: ${{ inputs.build-args }}
           cache-from: type=gha
-          cache-to: type=gha,mode={{ inputs.cache-mode }}
+          cache-to: type=gha,mode=${{ inputs.cache-mode }}

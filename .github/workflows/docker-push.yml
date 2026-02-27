@@ -4,12 +4,12 @@ on:
   workflow_call:
     inputs:
       file:
-        description: 'Path to Dockerfile'
+        description: "Path to Dockerfile"
         type: string
         default: Dockerfile
     secrets:
       token:
-        description: 'A GitHub token secret'
+        description: "A GitHub token secret"
         required: true
 
 permissions:
