@@ -42,6 +42,7 @@ jobs:
           pattern: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
           merge-multiple: true
+          if-no-artifact-found: error
 
       - name: Release
         env:
