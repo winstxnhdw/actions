@@ -32,6 +32,7 @@ on:
 
 env:
   UV_LOCKED: 1
+  PYTHONDONTWRITEBYTECODE: 1
 
 jobs:
   lint:
@@ -126,4 +127,5 @@ jobs:
       - name: Install project
         shell: bash
         run: uv pip install dist/*.tar.gz
+
 
