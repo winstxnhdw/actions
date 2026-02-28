@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
