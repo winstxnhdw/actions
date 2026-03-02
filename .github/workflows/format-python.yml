@@ -63,5 +63,5 @@ jobs:
         run: |
           git add '*.py' '*.pyi'
           git commit -m "style: format scripts" || exit 0
-          git pull --autostash --rebase origin $BRANCH
+          git pull --rebase origin $BRANCH
           git push origin HEAD:$BRANCH

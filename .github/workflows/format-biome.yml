@@ -61,5 +61,5 @@ jobs:
       - name: Commit changes
         run: |
           git commit -am "style: format scripts" || true
-          git pull --autostash --rebase origin $BRANCH
+          git pull --rebase origin $BRANCH
           git push origin HEAD:$BRANCH
