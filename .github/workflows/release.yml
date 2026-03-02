@@ -4,29 +4,29 @@ on:
   workflow_call:
     inputs:
       release-tag:
-        description: 'Release tag'
+        description: "Release tag"
         type: string
         required: true
       release-title:
-        description: 'Release title'
+        description: "Release title"
         type: string
         required: true
       release-asset:
-        description: 'Release asset'
+        description: "Release asset"
         type: string
         required: true
       artifact-name:
-        description: 'Artifact name'
+        description: "Artifact name"
         type: string
         required: true
       artifact-path:
-        description: 'Artifact path'
+        description: "Artifact path"
         type: string
         default: ${{ github.workspace }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -42,7 +42,6 @@ jobs:
           pattern: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
           merge-multiple: true
-          if-no-artifact-found: error
 
       - name: Release
         env:

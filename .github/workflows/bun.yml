@@ -4,30 +4,33 @@ on:
   workflow_call:
     inputs:
       disable-formatter:
-        description: 'Disable formatter if true'
+        description: "Disable formatter if true"
         type: boolean
       disable-linter:
-        description: 'Disable linter if true'
+        description: "Disable linter if true"
         type: boolean
       disable-test:
-        description: 'Disable tests if true'
+        description: "Disable tests if true"
         type: boolean
       disable-build:
-        description: 'Disable build if true'
+        description: "Disable build if true"
         type: boolean
       build-args:
-        description: 'Build arguments'
+        description: "Build arguments"
         type: string
+
+permissions: {}
 
 jobs:
   bun:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
         with:
           show-progress: false
+          persist-credentials: false
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -49,8 +52,8 @@ jobs:
 
       - name: Build
         if: ${{ !inputs.disable-build }}
+        env:
+          BUILD_ARGS: ${{ inputs.build-args }}
         run: |
           read -a BUILD_ARGS <<< $BUILD_ARGS
           bun run build ${BUILD_ARGS[@]}
-        env:
-          BUILD_ARGS: ${{ inputs.build-args }}

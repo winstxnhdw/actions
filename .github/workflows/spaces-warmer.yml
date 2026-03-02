@@ -11,6 +11,7 @@ on:
         type: string
         default: ""
 
+permissions: {}
 env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   HF_TOKEN: ${{ secrets.token }}

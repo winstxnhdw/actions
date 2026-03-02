@@ -1,6 +1,6 @@
 name: Format
 
-on: [workflow_call]
+on: workflow_call
 
 concurrency: ${{ github.job }}-${{ github.ref }}
 permissions:

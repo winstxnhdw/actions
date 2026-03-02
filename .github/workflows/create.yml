@@ -8,7 +8,7 @@ permissions:
 jobs:
   create:
     if: github.event.repository.is_template == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
