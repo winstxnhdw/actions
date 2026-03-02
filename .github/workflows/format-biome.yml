@@ -2,9 +2,12 @@ name: Format
 
 on: workflow_call
 
-concurrency: ${{ github.job }}-${{ github.ref }}
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 permissions:
   contents: write
+
+env:
+  BRANCH: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   format:
@@ -15,7 +18,7 @@ jobs:
         uses: actions/checkout@v6.0.2
         with:
           show-progress: false
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: ${{ env.BRANCH }}
 
       - name: Setup Biome
         uses: biomejs/setup-biome@v2.7.0
@@ -33,5 +36,5 @@ jobs:
       - name: Commit changes
         run: |
           git commit -am "style: format scripts" || true
-          git pull --autostash --rebase origin ${{ github.head_ref || github.ref_name }}
+          git pull --autostash --rebase origin $BRANCH
           git push

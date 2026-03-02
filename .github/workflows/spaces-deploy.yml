@@ -7,7 +7,7 @@ on:
         description: "A Hugging Face API token"
         required: true
 
-concurrency: ${{ github.job }}-${{ github.ref }}
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 permissions: {}
 
 jobs:
