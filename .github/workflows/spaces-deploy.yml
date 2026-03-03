@@ -2,27 +2,59 @@ name: Deploy
 
 on:
   workflow_call:
+    inputs:
+      dockerfile:
+        default: Dockerfile
     secrets:
       token:
         description: "A Hugging Face API token"
         required: true
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
 permissions: {}
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+env:
+  DOCKERFILE_PATH: ${{ inputs.dockerfile }}
 
 jobs:
+  download:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+
+    steps:
+      - name: Download Dockerfile from GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl https://raw.githubusercontent.com/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}/$GITHUB_REF_NAME/$DOCKERFILE_PATH \
+                -H "Authorization: token $GH_TOKEN" \
+                --create-dirs -o "$DOCKERFILE_PATH"
+               
+      - name: Upload Dockerfile
+        uses: actions/upload-artifact@v7.0.0
+        with:
+          name: dockerfile
+          path: ${{ env.DOCKERFILE_PATH }}
+
   deploy:
+    needs: download
     runs-on: ubuntu-slim
     environment:
       name: production
       url: https://huggingface.co/spaces/${{ github.repository }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6.0.2
+      - name: Checkout Hugging Face repository
+        run: |
+          git clone -c http.extraHeader="Authorization: Bearer $HF_TOKEN" \
+          https://huggingface.co/spaces/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/} .
+        env:
+          HF_TOKEN: ${{ secrets.token }}
+
+      - name: Download updated Dockerfile
+        uses: actions/download-artifact@v8.0.0
         with:
-          show-progress: false
-          persist-credentials: false
+          name: dockerfile
 
       - name: Set Git config
         run: |
@@ -31,13 +63,8 @@ jobs:
 
       - name: Push to Hugging Face Spaces
         env:
-          HF_TOKEN: ${{ secrets.token }}
-          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          COMMIT_MESSAGE=$(git show -s --format=%s)
-          git clone https://$GITHUB_REPOSITORY_OWNER:$HF_TOKEN@huggingface.co/spaces/$GITHUB_REPOSITORY_OWNER/$REPOSITORY_NAME
-          pushd $REPOSITORY_NAME
-          mv ../Dockerfile .
-          git add Dockerfile
-          git commit --amend -m "$COMMIT_MESSAGE"
+          git add "$DOCKERFILE_PATH"
+          git commit --amend -m "$MESSAGE"
           git push --force-with-lease
