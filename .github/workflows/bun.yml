@@ -19,8 +19,6 @@ on:
         description: "Build arguments"
         type: string
 
-permissions: {}
-
 jobs:
   bun:
     runs-on: ubuntu-slim
