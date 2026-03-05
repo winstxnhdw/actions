@@ -2,10 +2,11 @@ name: Format
 
 on: workflow_call
 
-permissions: {}
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
   BRANCH: ${{ github.head_ref || github.ref_name }}
+  PATCH_NAME: format.patch
+  ARTIFACT_NAME: format-patch
 
 jobs:
   format:
@@ -28,11 +29,14 @@ jobs:
       - name: Fix format
         run: uvx ruff format --diff || uvx ruff format --quiet
 
+      - name: Create format patch
+        run: git diff > "$PATCH_NAME"
+
       - name: Upload artifact
         uses: actions/upload-artifact@v7.0.0
         with:
-          name: formatted-files
-          path: ${{ github.workspace }}
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.PATCH_NAME }}
 
   push:
     needs: format
@@ -50,9 +54,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8.0.0
         with:
-          pattern: formatted-files
-          merge-multiple: true
-          path: ${{ github.workspace }}
+          pattern: ${{ env.ARTIFACT_NAME }}
 
       - name: Set Git config
         run: |
@@ -61,7 +63,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add '*.py' '*.pyi'
-          git commit -m "style: format scripts" || exit 0
-          git pull --rebase origin $BRANCH
-          git push origin HEAD:$BRANCH
+          git apply "$PATCH_NAME" || true
+          git commit -m "style: format scripts" || true
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"

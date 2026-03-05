@@ -12,15 +12,15 @@ on:
         description: "A GitHub token secret"
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   packages: write
 
 env:
   REGISTRY: ghcr.io
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   push:
@@ -55,5 +55,5 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
-          push: true
           cache-from: type=gha
+          push: true

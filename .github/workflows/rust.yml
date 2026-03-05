@@ -11,8 +11,6 @@ on:
         description: "Disable tests if true"
         type: boolean
 
-permissions: {}
-
 jobs:
   lint:
     runs-on: ubuntu-latest

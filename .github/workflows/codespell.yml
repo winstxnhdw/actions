@@ -15,8 +15,6 @@ on:
         description: "File containing words to ignore"
         type: string
 
-permissions: {}
-
 jobs:
   codespell:
     runs-on: ubuntu-latest
