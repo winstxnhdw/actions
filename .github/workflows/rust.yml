@@ -42,7 +42,7 @@ jobs:
         run: rustup component add clippy
 
       - name: Lint
-        run: cargo clippy --frozen -- -Dwarnings
+        run: cargo clippy --locked -- -Dwarnings
 
   test:
     if: ${{ !inputs.disable-test }}
@@ -70,4 +70,4 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Test
-        run: cargo test --frozen
+        run: cargo test --locked
