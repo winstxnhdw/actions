@@ -106,7 +106,6 @@ Minimally, you can use it in the following manner.
 ```yml
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   auto-merge:
