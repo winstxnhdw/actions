@@ -6,7 +6,6 @@ on:
     secrets:
       token:
         description: "A GitHub token secret"
-        required: true
 
 permissions:
   contents: write
@@ -21,5 +20,8 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
+      - name: Auto-approve Dependabot PR
+        run: gh pr review --approve $PR_URL || true
+
       - name: Auto-merge Dependabot PR
         run: gh pr merge --squash $PR_URL || gh pr merge --auto --squash $PR_URL

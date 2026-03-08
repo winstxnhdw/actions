@@ -1,7 +1,7 @@
 # actions
 
 [![codespell.yml](https://github.com/winstxnhdw/actions/actions/workflows/codespell.yml/badge.svg)](https://github.com/winstxnhdw/actions/actions/workflows/codespell.yml)
-[![dependabot.yml](https://github.com/winstxnhdw/actions/actions/workflows/dependabot-public.yml/badge.svg)](https://github.com/winstxnhdw/actions/actions/workflows/dependabot-public.yml)
+[![dependabot.yml](https://github.com/winstxnhdw/actions/actions/workflows/dependabot.yml/badge.svg)](https://github.com/winstxnhdw/actions/actions/workflows/dependabot.yml)
 
 This repository contains a collection of my reusable GitHub workflows. Most actions are handwritten for performance and security, except for officially maintained actions.
 
@@ -10,8 +10,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [bun.yml](#bunyml)
 - [codespell.yml](#codespellyml)
 - [create.yml](#createyml)
-- [dependabot-private.yml](#dependabot-privateyml)
-- [dependabot-public.yml](#dependabot-publicyml)
+- [dependabot.yml](#dependabotyml)
 - [docker-build.yml](#docker-buildyml)
 - [docker-push.yml](#docker-pushyml)
 - [format-biome.yml](#format-biomeyml)
@@ -86,9 +85,9 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/create.yml@main
 ```
 
-### dependabot-private.yml
+### dependabot.yml
 
-Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-private.yml) for auto-merging and/or auto-approving Dependabot pull requests in private repositories.
+Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot.yml) for auto-merging Dependabot pull requests.
 
 ```yml
 permissions:
@@ -97,14 +96,12 @@ permissions:
 
 jobs:
   auto-merge:
-    uses: winstxnhdw/actions/.github/workflows/dependabot-private.yml@main
+    uses: winstxnhdw/actions/.github/workflows/dependabot.yml@main
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### dependabot-public.yml
-
-Reusable [Dependabot](https://github.com/dependabot/dependabot-core) [workflow](.github/workflows/dependabot-public.yml) for auto-merging Dependabot pull requests in public repositories.
+Minimally, you can use it in the following manner.
 
 ```yml
 permissions:
@@ -112,9 +109,7 @@ permissions:
 
 jobs:
   auto-merge:
-    uses: winstxnhdw/actions/.github/workflows/dependabot-public.yml@main
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    uses: winstxnhdw/actions/.github/workflows/dependabot.yml@main
 ```
 
 ### docker-build.yml

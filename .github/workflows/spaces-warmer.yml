@@ -25,10 +25,12 @@ jobs:
         env:
           QUERY_PATH: ${{ inputs.path }}
         run: |
-          curl -f https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space$QUERY_PATH -H "Authorization: Bearer $HF_TOKEN"
+          curl -f -H "Authorization: Bearer $HF_TOKEN" \
+               -- "https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space$QUERY_PATH"
 
       - name: Restart on failure
         if: failure()
         run: |
-          curl -X POST https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart \
-               -H "Authorization: Bearer $HF_TOKEN"
+          curl -X POST \
+               -H "Authorization: Bearer $HF_TOKEN" \
+               -- "https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart"

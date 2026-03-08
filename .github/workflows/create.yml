@@ -20,9 +20,9 @@ jobs:
         run: rm .github/workflows/create.yml
 
       - name: Rename README title
+        run: sed -i "1s/.*/# $REPOSITORY_NAME/" README.md
         env:
           REPOSITORY_NAME: ${{ github.event.repository.name }}
-        run: sed -i "1s/.*/# $REPOSITORY_NAME/" README.md
 
       - name: Set Git config
         run: |

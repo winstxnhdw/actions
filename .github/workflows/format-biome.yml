@@ -2,14 +2,17 @@ name: Format
 
 on: workflow_call
 
-permissions: {}
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
   BRANCH: ${{ github.head_ref || github.ref_name }}
+  PATCH_NAME: format.patch
+  ARTIFACT_NAME: format-patch
 
 jobs:
   format:
     runs-on: ubuntu-slim
+    outputs:
+      patched: ${{ steps.patch.outputs.patched }}
 
     steps:
       - name: Checkout repository
@@ -27,13 +30,19 @@ jobs:
       - name: Run Biome
         run: biome check --write .
 
+      - name: Create format patch
+        id: patch
+        run: echo "patched=$(git diff | tee "$PATCH_NAME" | head -c1)" > "$GITHUB_OUTPUT"
+
       - name: Upload artifact
+        if: steps.patch.outputs.patched
         uses: actions/upload-artifact@v7.0.0
         with:
-          name: formatted-files
-          path: ${{ github.workspace }}
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.PATCH_NAME }}
 
   push:
+    if: needs.format.outputs.patched
     needs: format
     runs-on: ubuntu-slim
     permissions:
@@ -49,9 +58,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8.0.0
         with:
-          pattern: formatted-files
-          merge-multiple: true
-          path: ${{ github.workspace }}
+          pattern: ${{ env.ARTIFACT_NAME }}
 
       - name: Set Git config
         run: |
@@ -60,6 +67,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          git apply "$PATCH_NAME" || true
           git commit -am "style: format scripts" || true
-          git pull --rebase origin $BRANCH
-          git push origin HEAD:$BRANCH
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"

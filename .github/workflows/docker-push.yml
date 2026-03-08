@@ -12,15 +12,15 @@ on:
         description: "A GitHub token secret"
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   packages: write
 
 env:
   REGISTRY: ghcr.io
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   push:
@@ -44,16 +44,16 @@ jobs:
           password: ${{ secrets.token }}
 
       - name: Extract metadata for Docker
-        uses: docker/metadata-action@v5.10.0
+        uses: docker/metadata-action@v6.0.0
         id: meta
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
 
       - name: Push Docker image
-        uses: docker/build-push-action@v6.19.2
+        uses: docker/build-push-action@v7.0.0
         with:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
-          push: true
           cache-from: type=gha
+          push: true

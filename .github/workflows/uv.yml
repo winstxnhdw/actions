@@ -30,7 +30,6 @@ on:
         type: string
         default: .
 
-permissions: {}
 env:
   UV_LOCKED: 1
   PYTHONDONTWRITEBYTECODE: 1
