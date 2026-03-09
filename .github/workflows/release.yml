@@ -50,7 +50,8 @@ jobs:
           RELEASE_TAG: ${{ inputs.release-tag }}
           RELEASE_TITLE: ${{ inputs.release-title }}
           RELEASE_ASSET: ${{ inputs.release-asset }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           gh release delete "$RELEASE_TAG" -y || true
-          gh release create "$RELEASE_TAG" -t "$RELEASE_TITLE" -n "$(git log -1 --pretty=format:"%B")" || true
+          gh release create "$RELEASE_TAG" -t "$RELEASE_TITLE" -n "$COMMIT_MESSAGE" || true
           gh release upload "$RELEASE_TAG" "$RELEASE_ASSET" --clobber
