@@ -29,9 +29,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: >-
           curl "https://raw.githubusercontent.com/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}/$GITHUB_REF_NAME/$DOCKERFILE_PATH"
-            --header "Authorization: token $GH_TOKEN"
-            --output "$DOCKERFILE_PATH"
-            --create-dirs
+          --header "Authorization: token $GH_TOKEN"
+          --output "$DOCKERFILE_PATH"
+          --create-dirs
 
       - name: Upload Dockerfile
         uses: actions/upload-artifact@v7.0.0
