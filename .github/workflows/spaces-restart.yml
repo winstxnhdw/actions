@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Factory restart API
-        run: |
-          curl -X POST \
-               -H "Authorization: Bearer $HF_TOKEN" \
-               -- "https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart?factory=true"
+        run: >-
+          curl "https://huggingface.co/api/spaces/$GITHUB_REPOSITORY/restart?factory=true"
+            --request POST
+            --header "Authorization: Bearer $HF_TOKEN"

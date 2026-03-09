@@ -27,10 +27,11 @@ jobs:
       - name: Download Dockerfile from GitHub
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          curl -H "Authorization: token $GH_TOKEN" \
-               --create-dirs -o "$DOCKERFILE_PATH" \
-               -- "https://raw.githubusercontent.com/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}/$GITHUB_REF_NAME/$DOCKERFILE_PATH"
+        run: >-
+          curl "https://raw.githubusercontent.com/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}/$GITHUB_REF_NAME/$DOCKERFILE_PATH"
+            --header "Authorization: token $GH_TOKEN"
+            --output "$DOCKERFILE_PATH"
+            --create-dirs
 
       - name: Upload Dockerfile
         uses: actions/upload-artifact@v7.0.0
@@ -46,10 +47,14 @@ jobs:
       url: https://huggingface.co/spaces/${{ github.repository }}
 
     steps:
-      - name: Checkout Hugging Face repository
+      - name: Set Git config
         run: |
-          git clone -c http.extraHeader="Authorization: Bearer $HF_TOKEN" \
-                    -- "https://huggingface.co/spaces/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}" .
+          git config http.extraHeader "Authorization: Bearer $HF_TOKEN"
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git config user.name github-actions[bot]
+
+      - name: Checkout Hugging Face repository
+        run: git clone "https://huggingface.co/spaces/$GITHUB_REPOSITORY_OWNER/${GITHUB_REPOSITORY#*/}" .
         env:
           HF_TOKEN: ${{ secrets.token }}
 
@@ -57,11 +62,6 @@ jobs:
         uses: actions/download-artifact@v8.0.0
         with:
           name: dockerfile
-
-      - name: Set Git config
-        run: |
-          git config user.email github-actions[bot]@users.noreply.github.com
-          git config user.name github-actions[bot]
 
       - name: Push to Hugging Face Spaces
         env:
