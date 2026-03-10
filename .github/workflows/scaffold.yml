@@ -1,4 +1,4 @@
-name: Create
+name: Scaffold
 
 on: workflow_call
 
@@ -6,7 +6,7 @@ permissions:
   contents: write
 
 jobs:
-  create:
+  scaffold:
     if: github.event.repository.is_template == false
     runs-on: ubuntu-slim
 
@@ -17,7 +17,7 @@ jobs:
           show-progress: false
 
       - name: Remove unnecessary workflow files
-        run: rm .github/workflows/create.yml
+        run: REF="${GITHUB_WORKFLOW_REF#*/*/}"; rm "${REF%@*}"
 
       - name: Rename README title
         run: sed -i "1s/.*/# $REPOSITORY_NAME/" README.md

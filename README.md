@@ -9,7 +9,6 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 
 - [bun.yml](#bunyml)
 - [codespell.yml](#codespellyml)
-- [create.yml](#createyml)
 - [dependabot.yml](#dependabotyml)
 - [docker-build.yml](#docker-buildyml)
 - [docker-push.yml](#docker-pushyml)
@@ -19,6 +18,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [python.yml](#pythonyml)
 - [release.yml](#releaseyml)
 - [rust.yml](#rustyml)
+- [scaffold.yml](#scaffoldyml)
 - [spaces-deploy.yml](#spaces-deployyml)
 - [spaces-restart.yml](#spaces-restartyml)
 - [spaces-warmer.yml](#spaces-warmeryml)
@@ -68,21 +68,6 @@ Minimally, you can use it in the following manner.
 jobs:
   codespell:
     uses: winstxnhdw/actions/.github/workflows/codespell.yml@main
-```
-
-### create.yml
-
-Reusable GitHub template [workflow](.github/workflows/create.yml) for dynamically renaming the repository when creating a new repository from a template.
-
-```yml
-on: create
-
-permissions:
-  contents: write
-
-jobs:
-  create:
-    uses: winstxnhdw/actions/.github/workflows/create.yml@main
 ```
 
 ### dependabot.yml
@@ -296,6 +281,21 @@ Minimally, you can use it in the following manner.
 jobs:
   rust:
     uses: winstxnhdw/actions/.github/workflows/rust.yml@main
+```
+
+### scaffold.yml
+
+Reusable GitHub template [workflow](.github/workflows/scaffold.yml) for dynamically renaming the repository when creating a new repository from a template.
+
+```yml
+on: scaffold
+
+permissions:
+  contents: write
+
+jobs:
+  scaffold:
+    uses: winstxnhdw/actions/.github/workflows/scaffold.yml@main
 ```
 
 ### spaces-deploy.yml
