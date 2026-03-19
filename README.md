@@ -196,6 +196,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/format-biome.yml@main
     secrets:
       token: ${{ secrets.PAT }}
+      ssh-key: ${{ secrets.DEPLOY_KEY }}
 ```
 
 Minimally, you can use it in the following manner.
@@ -222,6 +223,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/format-push.yml@main
     secrets:
       token: ${{ secrets.PAT }}
+      ssh-key: ${{ secrets.DEPLOY_KEY }}
 ```
 
 Minimally, you can use it in the following manner.
@@ -248,6 +250,7 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
     secrets:
       token: ${{ secrets.PAT }}
+      ssh-key: ${{ secrets.DEPLOY_KEY }}
 ```
 
 Minimally, you can use it in the following manner.
