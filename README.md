@@ -3,7 +3,38 @@
 [![codespell.yml](https://github.com/winstxnhdw/actions/actions/workflows/codespell.yml/badge.svg)](https://github.com/winstxnhdw/actions/actions/workflows/codespell.yml)
 [![dependabot.yml](https://github.com/winstxnhdw/actions/actions/workflows/dependabot.yml/badge.svg)](https://github.com/winstxnhdw/actions/actions/workflows/dependabot.yml)
 
-This repository contains a collection of my reusable GitHub workflows. Most actions are handwritten for performance and security, except for officially maintained actions.
+This repository contains a collection of my reusable GitHub workflows and composite actions. Most actions are handwritten for performance and security, except for officially maintained actions.
+
+## Actions
+
+- [upload-patch](#upload-patch)
+
+### upload-patch
+
+Composite [action](upload-patch/action.yml) for creating a patch from `git diff` and uploading it as an artifact.
+
+```yml
+- name: Upload patch
+  id: patch
+  uses: winstxnhdw/actions/upload-patch@main
+  with:
+    name: diff-patch
+    path: diff.patch
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+- name: Upload patch
+  id: patch
+  uses: winstxnhdw/actions/upload-patch@main
+```
+
+The action has the following output(s).
+
+| Output    | Description                        |
+| --------- | ---------------------------------- |
+| `patched` | Whether there are changes to patch |
 
 ## Workflows
 
@@ -13,6 +44,7 @@ This repository contains a collection of my reusable GitHub workflows. Most acti
 - [docker-build.yml](#docker-buildyml)
 - [docker-push.yml](#docker-pushyml)
 - [format-biome.yml](#format-biomeyml)
+- [format-push.yml](#format-pushyml)
 - [format-python.yml](#format-pythonyml)
 - [keep-alive.yml](#keep-aliveyml)
 - [python.yml](#pythonyml)
@@ -162,11 +194,63 @@ permissions:
 jobs:
   format:
     uses: winstxnhdw/actions/.github/workflows/format-biome.yml@main
+    secrets:
+      token: ${{ secrets.PAT }}
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  format:
+    uses: winstxnhdw/actions/.github/workflows/format-biome.yml@main
+```
+
+### format-push.yml
+
+Reusable [workflow](.github/workflows/format-push.yml) for downloading a format patch artifact, applying it, and pushing the commit.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  push:
+    uses: winstxnhdw/actions/.github/workflows/format-push.yml@main
+    secrets:
+      token: ${{ secrets.PAT }}
+```
+
+Minimally, you can use it in the following manner.
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  push:
+    uses: winstxnhdw/actions/.github/workflows/format-push.yml@main
 ```
 
 ### format-python.yml
 
 Reusable [Python](https://github.com/python/cpython) [workflow](.github/workflows/format-python.yml) for fixing Python formatting with [ruff](https://github.com/astral-sh/ruff).
+
+```yml
+permissions:
+  contents: write
+
+jobs:
+  format:
+    uses: winstxnhdw/actions/.github/workflows/format-python.yml@main
+    secrets:
+      token: ${{ secrets.PAT }}
+```
+
+Minimally, you can use it in the following manner.
 
 ```yml
 permissions:

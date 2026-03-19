@@ -1,0 +1,30 @@
+name: Upload patch
+description: Create a patch from git diff and upload as artifact
+
+inputs:
+  name:
+    description: Artifact name
+    default: diff-patch
+  path:
+    description: Patch file name
+    default: diff.patch
+
+outputs:
+  patched:
+    description: Whether there are changes to patch
+    value: ${{ steps.patch.outputs.patched }}
+
+runs:
+  using: composite
+  steps:
+    - name: Create patch
+      id: patch
+      shell: bash
+      run: echo "patched=$(git diff | tee "${{ inputs.path }}" | head -c1)" >> "$GITHUB_OUTPUT"
+
+    - name: Upload artifact
+      if: steps.patch.outputs.patched
+      uses: actions/upload-artifact@v7.0.0
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
