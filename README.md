@@ -221,6 +221,8 @@ permissions:
 jobs:
   push:
     uses: winstxnhdw/actions/.github/workflows/format-push.yml@main
+    with:
+      message: "style: format scripts"
     secrets:
       token: ${{ secrets.PAT }}
       ssh-key: ${{ secrets.DEPLOY_KEY }}

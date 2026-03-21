@@ -43,6 +43,8 @@ jobs:
     if: needs.format.outputs.patched
     needs: format
     uses: winstxnhdw/actions/.github/workflows/format-push.yml@main
+    with:
+      message: "style: format scripts"
     secrets:
       token: ${{ secrets.token }}
       ssh-key: ${{ secrets.ssh-key }}

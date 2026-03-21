@@ -2,6 +2,10 @@ name: Patch
 
 on:
   workflow_call:
+    inputs:
+      message:
+        type: string
+        default: "chore: apply patch"
     secrets:
       token:
         required: false
@@ -38,8 +42,10 @@ jobs:
           git config user.name github-actions[bot]
 
       - name: Commit changes
+        env:
+          MESSAGE: ${{ inputs.message }}
         run: |
           git apply diff.patch || true
-          git commit -am "style: format scripts" || true
+          git commit -am "$MESSAGE" || true
           git pull --rebase origin "$BRANCH"
           git push origin "HEAD:$BRANCH"
