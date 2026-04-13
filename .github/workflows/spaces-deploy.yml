@@ -34,7 +34,7 @@ jobs:
           --create-dirs
 
       - name: Upload Dockerfile
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: dockerfile
           path: ${{ env.DOCKERFILE_PATH }}
