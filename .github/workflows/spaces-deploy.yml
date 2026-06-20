@@ -38,6 +38,7 @@ jobs:
         with:
           name: dockerfile
           path: ${{ env.DOCKERFILE_PATH }}
+          retention-days: 1
 
   deploy:
     needs: download

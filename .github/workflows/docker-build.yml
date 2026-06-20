@@ -19,6 +19,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILD_RECORD_RETENTION_DAYS: 1
 
     steps:
       - name: Checkout repository
