@@ -24,7 +24,7 @@ jobs:
       - name: Set cURL header
         run: echo "$CURL_HEADER" > ~/.curlrc
         env:
-          CURL_HEADER: "-H Authorization: Bearer ${{ env.HF_TOKEN }}"
+          CURL_HEADER: '-H "Authorization: Bearer ${{ env.HF_TOKEN }}"'
 
       - name: cURL the API
         run: curl -f "https://$GITHUB_REPOSITORY_OWNER-$REPOSITORY_NAME.hf.space$QUERY_PATH"
