@@ -166,6 +166,9 @@ jobs:
     uses: winstxnhdw/actions/.github/workflows/docker-push.yml@main
     with:
       file: Dockerfile.build
+      build-args: |
+        ARG_1=arg_1_value
+        ARG_2=arg_2_value
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```

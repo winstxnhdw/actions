@@ -7,6 +7,10 @@ on:
         description: "Path to Dockerfile"
         type: string
         default: Dockerfile
+      build-args:
+        description: "Build-time variables for the Docker build"
+        type: string
+        default: ""
     secrets:
       token:
         description: "A GitHub token secret"
@@ -57,5 +61,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           file: ${{ inputs.file }}
+          build-args: ${{ inputs.build-args }}
           cache-from: type=gha
           push: true
