@@ -27,7 +27,7 @@ jobs:
           ref: ${{ env.BRANCH }}
 
       - name: Setup Biome
-        uses: biomejs/setup-biome@v2.7.1
+        uses: biomejs/setup-biome@v2.8.0
         with:
           version: latest
 
